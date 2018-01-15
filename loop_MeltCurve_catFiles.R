@@ -1,7 +1,6 @@
 # This file takes output from meltcurve analysis folders and concatenates it into four files
 # Creates on file for each meltcurve locus + replicate combination
 # Started: 6/7/17
-# Last edits: 8/1/17
 
 # 0 ################################################################################
 ### load required library
