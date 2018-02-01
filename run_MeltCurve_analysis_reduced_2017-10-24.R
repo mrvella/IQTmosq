@@ -1,6 +1,5 @@
 ### Melt Curve Analysis
 ### File Started: 31 May 2017
-### Last Updated: 21 Sep 2017
 
 # 0 ################################################################################
 ### Prepare working environment
@@ -26,7 +25,7 @@ setwd("~/Dropbox/GouldLab/Project_Mosquito/Database")
 
 # 2 ################################################################################
 ### Loop to concatenate MeltCurve data files
-source("R_Scripts/loop_MeltCurve_catFiles.R")
+source("R_Scripts/IQTmosq/loop_MeltCurve_catFiles.R")
 # If you recieve the following error -- 
 # "Error in file(file, "rt") : cannot open the connection' 
 # -- make sure all analysis files are available and named properly in MeltCurve folder"
@@ -116,7 +115,7 @@ write.csv(kdrData
 # 8 ################################################################################
 ### Convert melt curve output to readable genotype and haplotype
 # Load function to convert melt curve output
-source("R_Scripts/function_convertMergedMeltCurve.R")
+source("R_Scripts/IQTmosq/function_convertMergedMeltCurve.R")
 # Run function for each column
 kdrData$V1016I_converted <- convert1016(kdrData)
 kdrData$F1534C_converted <- convert1534(kdrData)
@@ -199,9 +198,9 @@ oct2014b <- sqldf("Select * from buff where newDate between '2014-10-01' and '20
 ### Create a dataframe with output from function
 
 # Load functions
-source("R_Scripts/function_mc.1016.R")
-source("R_Scripts/function_mc.1534.R")
-source("R_Scripts/function_mc.haps.R")
+source("R_Scripts/IQTmosq/function_mc.1016.R")
+source("R_Scripts/IQTmosq/function_mc.1534.R")
+source("R_Scripts/IQTmosq/function_mc.haps.R")
 
 
 # 11 ################################################################################
@@ -389,7 +388,7 @@ write.csv(mc.1016.b, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/D
 # ### Plot Frequency of Resistance Alleles at two loci across years
 # # Plot based off of dataframes mc.1016.yr and mc.1534.yr
 # 
-# source("R_Scripts/plot_kdrYears.R")
+# source("R_Scripts/IQTmosq/plot_kdrYears.R")
 # kdrYears
 # 
 # # Write plot to pdf
@@ -402,7 +401,7 @@ write.csv(mc.1016.b, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/D
 # ### Plot Frequency of Resistance Allele at 1016 locus across year 2014
 # # Plot based off of dataframe mc.1016.mo
 # 
-# source("R_Scripts/plot_kdrMonths.R")
+# source("R_Scripts/IQTmosq/plot_kdrMonths.R")
 # kdrMonths
 # 
 # # Write plot to pdf
@@ -415,7 +414,7 @@ write.csv(mc.1016.b, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/D
 ### Plot Frequency of Resistance Allele at 1016 locus by zone
 # Plot based off of dataframes mc.1016.t and mc.1016.b
 
-source("R_Scripts/plot_kdrZones.R")
+source("R_Scripts/IQTmosq/plot_kdrZones.R")
 kdrZones
 
 # Write plot to pdf
