@@ -150,6 +150,7 @@ mosq2013 <- sqldf("Select * from kdrData where newDate between '2013-01-01' and 
 mosq2014 <- sqldf("Select * from kdrData where newDate between '2014-01-01' and '2014-12-31'")
 mosq2015 <- sqldf("Select * from kdrData where newDate between '2015-01-01' and '2015-12-31'")
 mosq2016 <- sqldf("Select * from kdrData where newDate between '2016-01-01' and '2016-12-31'")
+mosq2017 <- sqldf("Select * from kdrData where newDate between '2017-01-01' and '2017-12-31'")
 
 # Select based on month from all 2014 data
 jan2014 <- sqldf("Select * from mosq2014 where newDate between '2014-01-01' and '2014-01-31'")
@@ -229,6 +230,7 @@ m2013 = mc.1016(mosq2013)
 m2014 = mc.1016(mosq2014)
 m2015 = mc.1016(mosq2015)
 m2016 = mc.1016(mosq2016)
+m2017 = mc.1016(mosq2017)
 
 # For 1534 locus at all years
 s2000 = mc.1534(mosq2000)
@@ -248,6 +250,7 @@ s2013 = mc.1534(mosq2013)
 s2014 = mc.1534(mosq2014)
 s2015 = mc.1534(mosq2015)
 s2016 = mc.1534(mosq2016)
+s2017 = mc.1534(mosq2017)
 
 # For haplotypes at all years
 h2000 = mc.haps(mosq2000)
@@ -267,6 +270,7 @@ h2013 = mc.haps(mosq2013)
 h2014 = mc.haps(mosq2014)
 h2015 = mc.haps(mosq2015)
 h2016 = mc.haps(mosq2016)
+h2017 = mc.haps(mosq2017)
 
 # For 1016 locus at all months in 2014
 mJan <- mc.1016(jan2014)
@@ -319,7 +323,7 @@ bOct <- mc.1016(oct2014b)
 
 ### Create dataframes
 # Create list of years included in dataframe
-year <- c(2000:2016)
+year <- c(2000:2017)
 # Create list of months included in dataframe - as numeric
 month <- c(1:10)
 # Create list of months included in dataframe - as objects
@@ -328,21 +332,21 @@ month <- c(1:10)
 # For 1016 locus
 df1016 <- rbind(m2000, m2001, m2002, m2003, m2004, m2005, m2006
                , m2007, m2008, m2009, m2010, m2011, m2012, m2013
-               , m2014, m2015, m2016)
+               , m2014, m2015, m2016, m2017)
 # Add year ID to rows in df rename
 mc.1016.yr <- cbind(year, df1016)
 
 # For 1534 locus
 df1534 <- rbind(s2000, s2001, s2002, s2003, s2004, s2005, s2006
                , s2007, s2008, s2009, s2010, s2011, s2012, s2013
-               , s2014, s2015, s2016)
+               , s2014, s2015, s2016, s2017)
 # Add year ID to rows in df rename
 mc.1534.yr <- cbind(year, df1534)
 
 # For haplotypes
 dfHaps <- rbind(h2000, h2001, h2002, h2003, h2004, h2005, h2006
                 , h2007, h2008, h2009, h2010, h2011, h2012, h2013
-                , h2014, h2015, h2016)
+                , h2014, h2015, h2016, h2017)
 # Add year ID to rows in df rename
 mc.haps.yr <- cbind(dfHaps, year)
 
