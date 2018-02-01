@@ -8,7 +8,7 @@
 
 ### Prepare workspace
 # Clear working environment
-#rm(list = ls())
+rm(list = ls())
 # Set working directory
 setwd("~/Dropbox/GouldLab/Project_Mosquito/Database")
 
@@ -308,13 +308,29 @@ sum2016 <- colSums(df[, c(1:4)])
 # Rename df
 haps2016 <- df
 
+# 2017
+df <- data.frame()
+# For each year, multiply the genotype number by the haplotype probability
+for(i in 1:9){
+  df_New <- mc.haps.yr[18,i] * HapProbs[i,]
+  yr <- mc.haps.yr$year[18]
+  df.yr <- c(df_New, yr)
+  df <- rbind(df, df.yr)
+  names(df) <- c("SS", "SR", "RS", "RR", "Year")
+}
+df
+# Create vector of haplotype sums for year
+sum2017 <- colSums(df[, c(1:4)])
+# Rename df
+haps2017 <- df
+
 
 ### Create table of sums for each haplotype per year
 sumAll <- rbind(sum2000, sum2001, sum2002, sum2003, sum2004, sum2005, sum2006, sum2007
-                , sum2008, sum2009, sum2010, sum2011, sum2012, sum2013, sum2014, sum2015, sum2016)
+                , sum2008, sum2009, sum2010, sum2011, sum2012, sum2013, sum2014, sum2015, sum2016, sum2017)
 
 row.names(sumAll) <- (c("2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008"
-                        , "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016"))
+                        , "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017"))
 sumAll
 
 
@@ -336,22 +352,23 @@ freq2013 <- sum2013/mc.haps.yr$n[14]
 freq2014 <- sum2014/mc.haps.yr$n[15]
 freq2015 <- sum2015/mc.haps.yr$n[16]
 freq2016 <- sum2016/mc.haps.yr$n[17]
+freq2017 <- sum2017/mc.haps.yr$n[18]
 
 # Create table for frequency of haps for each year
 freqAll <- rbind(freq2000, freq2001, freq2002, freq2003, freq2004, freq2005, freq2006, freq2007
-                , freq2008, freq2009, freq2010, freq2011, freq2012, freq2013, freq2014, freq2015, freq2016)
+                , freq2008, freq2009, freq2010, freq2011, freq2012, freq2013, freq2014, freq2015, freq2016, freq2017)
 
 row.names(freqAll) <- (c("2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008"
-                        , "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016"))
+                        , "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017"))
 freqAll <- as.data.frame(freqAll)
-year <- 2000:2016
+year <- 2000:2017
 freqAll <- cbind(freqAll, year)
 freqAll
 
 # Calculate 95% Confidence Interval
 ## for column 1: SS
 df <- data.frame()
-for(i in 1:17){
+for(i in 1:18){
   ci = 1.96 * (sqrt((freqAll[i,1]*(1-freqAll[i,1]))/(2*mc.haps.yr$n[i])))
   df = rbind(df, ci)
 }
@@ -360,7 +377,7 @@ CI_95.SS <- df
 
 ## for column 2: SR
 df <- data.frame()
-for(i in 1:17){
+for(i in 1:18){
   ci = 1.96 * (sqrt((freqAll[i,2]*(1-freqAll[i,2]))/(2*mc.haps.yr$n[i])))
   df = rbind(df, ci)
 }
@@ -370,7 +387,7 @@ CI_95.SR
 
 ## for column 3: RS
 df <- data.frame()
-for(i in 1:17){
+for(i in 1:18){
   ci = 1.96 * (sqrt((freqAll[i,3]*(1-freqAll[i,3]))/(2*mc.haps.yr$n[i])))
   df = rbind(df, ci)
 }
@@ -380,7 +397,7 @@ CI_95.RS
 
 ## for column 4: RR
 df <- data.frame()
-for(i in 1:17){
+for(i in 1:18){
   ci = 1.96 * (sqrt((freqAll[i,4]*(1-freqAll[i,4]))/(2*mc.haps.yr$n[i])))
   df = rbind(df, ci)
 }
@@ -405,7 +422,7 @@ freqRS <- freqAll_long[freqAll_long$Haplotype=="RS", ]
 freqRR <- freqAll_long[freqAll_long$Haplotype=="RR", ]
 
 # Plot graph
-source("R_Scripts/plot_kdrHaps.R")
+source("R_Scripts/IQTmosq/plot_kdrHaps.R")
 # View plot
 kdrHaps
 
