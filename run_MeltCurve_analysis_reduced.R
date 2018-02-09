@@ -77,7 +77,7 @@ kdrData$V1016I <- ifelse(kdrData$V1016I_rep1 == kdrData$V1016I_rep2
 kdrData$F1534C <- ifelse(kdrData$F1534C_rep1 == kdrData$F1534C_rep2
                          , as.character(kdrData$F1534C_rep1)
                          , "error")
-head(kdrData)
+# head(kdrData)
 
 # 6 ################################################################################
 ### Add column for Zone
@@ -106,6 +106,7 @@ write.csv(noZoneNoUnknowns, "noZoneNoUnknowns.csv", row.names = FALSE)
 ### This is the key code for this script
 ###################################################################################
 # Remove unknown location codes from kdrData and save file
+# "Unknown" location codes are from mosquitos collected by Steve Stoddard outside of IQT
 kdrData <- kdrData[kdrData$Location_Code != "unknown", ]
 write.csv(kdrData
           ,"~/Dropbox/GouldLab/Project_Mosquito/Database/kdrData_all_reduced.csv"
@@ -388,17 +389,21 @@ write.csv(mc.1534.mo, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/
 write.csv(mc.1016.t, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1016.t.csv", row.names = F)
 write.csv(mc.1016.b, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1016.b.csv", row.names = F)
 
-# # 12 ################################################################################
-# ### Plot Frequency of Resistance Alleles at two loci across years
-# # Plot based off of dataframes mc.1016.yr and mc.1534.yr
-# 
-# source("R_Scripts/IQTmosq/plot_kdrYears.R")
-# kdrYears
-# 
+# 12 ################################################################################
+### Plot Frequency of Resistance Alleles at two loci across years
+# Plot based off of dataframes mc.1016.yr and mc.1534.yr
+
+source("R_Scripts/IQTmosq/plot_kdrYears.R")
+kdrYears
+
 # # Write plot to pdf
 # pdf(file = paste("figures/kdrYears/kdrYears_", Sys.Date(), ".pdf", sep = ""), 11, 8.5)
 # print(kdrYears)
 # dev.off()
+
+# Write plot to png file
+ggsave(filename = paste0("figures/kdrYears/kdrYears_", Sys.Date(), ".png"), width = 11, height = 8, dpi = 600, units = "in", device='png')
+
 
   
 # # 13 ################################################################################
@@ -425,6 +430,16 @@ kdrZones
 pdf(file = paste("figures/kdrZones/kdrZones_", Sys.Date(), ".pdf", sep = ""), 11, 8.5)
 print(kdrZones)
 dev.off
+
+
+# 15 ################################################################################
+### Plot Frequency of Haplotypes across time
+
+source("R_Scripts/IQTmosq/run_Haplotype_Imputation.R")
+kdrHaps
+
+# Write plot to png
+ggsave(filename = paste0("figures/kdrHaps/kdrHaps_", Sys.Date(), ".png"), width = 11, height = 8, dpi = 600, units = "in", device='png')
 
 
 

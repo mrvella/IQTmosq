@@ -1,22 +1,21 @@
 # Create matrix of haplotype probabilities
 # Create graph of Frequency of kdr Haplotypes
 # Started: 8/1/17
-# Updated: 23 Oct 2017
 
 # This matrix assumes that RS does not exist in the population
 # Locus 1016 is always written first
 
 ### Prepare workspace
 # Clear working environment
-rm(list = ls())
+# rm(list = ls())
 # Set working directory
 setwd("~/Dropbox/GouldLab/Project_Mosquito/Database")
 
 # Load required libraries
-library(plyr)
+# library(dplyr)
 
 # Load mc.haps.yr file
-mc.haps.yr <- read.csv("mc.haps.yr_reduced.csv")
+# mc.haps.yr <- read.csv("mc.haps.yr_reduced.csv")
 mc.haps.yr
 
 # Create matrix of haplotype probabilities
@@ -24,7 +23,7 @@ genos <- c("SSSS", "SSSR", "SSRR", "SRSS", "SRSR", "SRRR", "RRSS", "RRSR", "RRRR
 haps <- c("SS", "SR", "RS", "RR")
 HapProbs <- matrix(data = c(1,0,0,0,0.5,0.5,0,0,0,1,0,0,1,0,0,0,0.33,0.33,0,0.33,0,0.5,0,0.5,0,0,0,0,0,0,0,1,0,0,0,1)
        , nrow = 9, ncol = 4, byrow = T, dimnames = list(genos, haps))
-HapProbs
+# HapProbs
 
 ### Impute haplotype numbers
 # 2000
@@ -37,7 +36,7 @@ for(i in 1:9){
   df <- rbind(df, df.yr)
   names(df) <- c("SS", "SR", "RS", "RR", "Year")
 }
-df
+# df
 # Create vector of haplotype sums for year
 sum2000 <- colSums(df[, c(1:4)])
 # Rename df
@@ -54,7 +53,7 @@ for(i in 1:9){
   df <- rbind(df, df.yr)
   names(df) <- c("SS", "SR", "RS", "RR", "Year")
 }
-df
+# df
 # Create vector of haplotype sums for year
 sum2001 <- colSums(df[, c(1:4)])
 # Rename df
@@ -71,7 +70,7 @@ for(i in 1:9){
   df <- rbind(df, df.yr)
   names(df) <- c("SS", "SR", "RS", "RR", "Year")
 }
-df
+# df
 # Create vector of haplotype sums for year
 sum2002 <- colSums(df[, c(1:4)])
 # Rename df
@@ -87,7 +86,7 @@ for(i in 1:9){
   df <- rbind(df, df.yr)
   names(df) <- c("SS", "SR", "RS", "RR", "Year")
 }
-df
+# df
 # Create vector of haplotype sums for year
 sum2003 <- colSums(df[, c(1:4)])
 # Rename df
@@ -103,7 +102,7 @@ for(i in 1:9){
   df <- rbind(df, df.yr)
   names(df) <- c("SS", "SR", "RS", "RR", "Year")
 }
-df
+# df
 # Create vector of haplotype sums for year
 sum2004 <- colSums(df[, c(1:4)])
 # Rename df
@@ -120,7 +119,7 @@ for(i in 1:9){
   df <- rbind(df, df.yr)
   names(df) <- c("SS", "SR", "RS", "RR", "Year")
 }
-df
+# df
 # Create vector of haplotype sums for year
 sum2005 <- colSums(df[, c(1:4)])
 # Rename df
@@ -136,7 +135,7 @@ for(i in 1:9){
   df <- rbind(df, df.yr)
   names(df) <- c("SS", "SR", "RS", "RR", "Year")
 }
-df
+# df
 # Create vector of haplotype sums for year
 sum2006 <- colSums(df[, c(1:4)])
 # Rename df
@@ -153,7 +152,7 @@ for(i in 1:9){
   df <- rbind(df, df.yr)
   names(df) <- c("SS", "SR", "RS", "RR", "Year")
 }
-df
+# df
 # Create vector of haplotype sums for year
 sum2007 <- colSums(df[, c(1:4)])
 # Rename df
@@ -170,7 +169,7 @@ for(i in 1:9){
   df <- rbind(df, df.yr)
   names(df) <- c("SS", "SR", "RS", "RR", "Year")
 }
-df
+# df
 # Create vector of haplotype sums for year
 sum2008 <- colSums(df[, c(1:4)])
 # Rename df
@@ -187,7 +186,7 @@ for(i in 1:9){
   df <- rbind(df, df.yr)
   names(df) <- c("SS", "SR", "RS", "RR", "Year")
 }
-df
+# df
 # Create vector of haplotype sums for year
 sum2009 <- colSums(df[, c(1:4)])
 # Rename df
@@ -203,7 +202,7 @@ for(i in 1:9){
   df <- rbind(df, df.yr)
   names(df) <- c("SS", "SR", "RS", "RR", "Year")
 }
-df
+# df
 # Create vector of haplotype sums for year
 sum2010 <- colSums(df[, c(1:4)])
 # Rename df
@@ -220,7 +219,7 @@ for(i in 1:9){
   df <- rbind(df, df.yr)
   names(df) <- c("SS", "SR", "RS", "RR", "Year")
 }
-df
+# df
 # Create vector of haplotype sums for year
 sum2011 <- colSums(df[, c(1:4)])
 # Rename df
@@ -236,7 +235,7 @@ for(i in 1:9){
   df <- rbind(df, df.yr)
   names(df) <- c("SS", "SR", "RS", "RR", "Year")
 }
-df
+# df
 # Create vector of haplotype sums for year
 sum2012 <- colSums(df[, c(1:4)])
 # Rename df
@@ -252,7 +251,7 @@ for(i in 1:9){
   df <- rbind(df, df.yr)
   names(df) <- c("SS", "SR", "RS", "RR", "Year")
 }
-df
+# df
 # Create vector of haplotype sums for year
 sum2013 <- colSums(df[, c(1:4)])
 # Rename df
@@ -268,7 +267,7 @@ for(i in 1:9){
   df <- rbind(df, df.yr)
   names(df) <- c("SS", "SR", "RS", "RR", "Year")
 }
-df
+# df
 # Create vector of haplotype sums for year
 sum2014 <- colSums(df[, c(1:4)])
 # Rename df
@@ -285,7 +284,7 @@ for(i in 1:9){
   df <- rbind(df, df.yr)
   names(df) <- c("SS", "SR", "RS", "RR", "Year")
 }
-df
+# df
 # Create vector of haplotype sums for year
 sum2015 <- colSums(df[, c(1:4)])
 # Rename df
@@ -302,7 +301,7 @@ for(i in 1:9){
   df <- rbind(df, df.yr)
   names(df) <- c("SS", "SR", "RS", "RR", "Year")
 }
-df
+# df
 # Create vector of haplotype sums for year
 sum2016 <- colSums(df[, c(1:4)])
 # Rename df
@@ -318,7 +317,7 @@ for(i in 1:9){
   df <- rbind(df, df.yr)
   names(df) <- c("SS", "SR", "RS", "RR", "Year")
 }
-df
+# df
 # Create vector of haplotype sums for year
 sum2017 <- colSums(df[, c(1:4)])
 # Rename df
@@ -331,7 +330,7 @@ sumAll <- rbind(sum2000, sum2001, sum2002, sum2003, sum2004, sum2005, sum2006, s
 
 row.names(sumAll) <- (c("2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008"
                         , "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017"))
-sumAll
+# sumAll
 
 
 ### Get the frequency of haps for each year
@@ -363,7 +362,7 @@ row.names(freqAll) <- (c("2000", "2001", "2002", "2003", "2004", "2005", "2006",
 freqAll <- as.data.frame(freqAll)
 year <- 2000:2017
 freqAll <- cbind(freqAll, year)
-freqAll
+# freqAll
 
 # Calculate 95% Confidence Interval
 ## for column 1: SS
@@ -374,6 +373,7 @@ for(i in 1:18){
 }
 colnames(df) <- "CI_95"
 CI_95.SS <- df
+# CI_95.SS
 
 ## for column 2: SR
 df <- data.frame()
@@ -383,7 +383,7 @@ for(i in 1:18){
 }
 colnames(df) <- "CI_95"
 CI_95.SR <- df
-CI_95.SR
+# CI_95.SR
 
 ## for column 3: RS
 df <- data.frame()
@@ -393,7 +393,7 @@ for(i in 1:18){
 }
 colnames(df) <- "CI_95"
 CI_95.RS <- df
-CI_95.RS
+# CI_95.RS
 
 ## for column 4: RR
 df <- data.frame()
@@ -403,7 +403,7 @@ for(i in 1:18){
 }
 colnames(df) <- "CI_95"
 CI_95.RR <- df
-CI_95.RR
+# CI_95.RR
 
 CI_95 <- rbind(CI_95.SS, CI_95.SR, CI_95.RS, CI_95.RR)
 
@@ -424,7 +424,7 @@ freqRR <- freqAll_long[freqAll_long$Haplotype=="RR", ]
 # Plot graph
 source("R_Scripts/IQTmosq/plot_kdrHaps.R")
 # View plot
-kdrHaps
+# kdrHaps
 
 # # Write plot to pdf
 # pdf(file = paste("figures/kdrHaps/kdrHaps_", Sys.Date(), ".pdf", sep = ""), 11, 8.5)
