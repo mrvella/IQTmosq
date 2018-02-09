@@ -42,14 +42,17 @@ mc.1016.2014
 # Notes about choosing expected proportions for G.tests
 # Options:
 # 1 - equal proportions - 0.5 : 0.5 ratio of R:S alleles
-# 2 - initial proportions - 0.7579909 : 0.2420091 ratio of R:S alleles (as of 8/2/17)
+# 2 - initial proportions - 0.765377 : 0.234623 ratio of R:S alleles (as of 2/9/18)
 # 3 - 2014 mean proportions - 0.7612376 : 0.2387624 ratio of R:S alleles (as of 8/2/17)
 
 # Choice:
 # Go with option #2 because we care about how the frequencies 
 # are changing over time relative to the beginning of the sampling period.
-# This choice is in line three of the Fun.xx functions as ", p=c(0.7579909, 0.2420091)"
-# update these numbers as more samples are analyzed for January 2014
+# This choice is in line three of the Fun.xx functions as ", p=c(meanFreqR, meanFreqS)"
+# Code to automatically update initial proportions, these are also the expected proportions for 
+# the pooled G-test
+meanFreqR = (mc.1016.2014$freqR[1] + mc.1016.2014$freqR[9])/2
+meanFreqS = 1 - meanFreqR
 
 ############################################################
 # Individual G-tests
@@ -60,19 +63,22 @@ mc.1016.2014
 # Functions to calculate individual G's, df's, and p-values
 Fun.G = function (Q){             
   G.test(x=c(Q["R"], Q["S"])
-         , p=c(0.7579909, 0.2420091)
+         # , p=c(0.765377, 0.234623)
+         , p=c(meanFreqR, meanFreqS)
   )$statistic                    
 }
 
 Fun.df = function (Q){
   G.test(x=c(Q["R"], Q["S"])
-         , p=c(0.7579909, 0.2420091)
+         # , p=c(0.765377, 0.234623)
+         , p=c(meanFreqR, meanFreqS)
   )$parameter
 }
 
 Fun.p = function (Q){
   G.test(x=c(Q["R"], Q["S"])
-         , p=c(0.7579909, 0.2420091)
+         # , p=c(0.765377, 0.234623)
+        , p=c(meanFreqR, meanFreqS)
   )$p.value
 }
 
@@ -110,7 +116,7 @@ Total.R = sum(mc.1016.2014$R)
 Total.S = sum(mc.1016.2014$S)                           
 
 observed = c(Total.R, Total.S)
-expected = c(0.7579909, 0.2420091)
+expected = c(meanFreqR, meanFreqS)
 
 G.test(x=observed, p=expected)
 
