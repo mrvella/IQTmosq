@@ -153,6 +153,18 @@ mosq2015 <- sqldf("Select * from kdrData where newDate between '2015-01-01' and 
 mosq2016 <- sqldf("Select * from kdrData where newDate between '2016-01-01' and '2016-12-31'")
 mosq2017 <- sqldf("Select * from kdrData where newDate between '2017-01-01' and '2017-12-31'")
 
+# Select based on month from all 2013 data
+jan2013 <- sqldf("Select * from mosq2013 where newDate between '2013-01-01' and '2013-01-31'")
+feb2013 <- sqldf("Select * from mosq2013 where newDate between '2013-02-01' and '2013-02-31'")
+mar2013 <- sqldf("Select * from mosq2013 where newDate between '2013-03-01' and '2013-03-31'")
+apr2013 <- sqldf("Select * from mosq2013 where newDate between '2013-04-01' and '2013-04-31'")
+may2013 <- sqldf("Select * from mosq2013 where newDate between '2013-05-01' and '2013-05-31'")
+jun2013 <- sqldf("Select * from mosq2013 where newDate between '2013-06-01' and '2013-06-31'")
+jul2013 <- sqldf("Select * from mosq2013 where newDate between '2013-07-01' and '2013-07-31'")
+aug2013 <- sqldf("Select * from mosq2013 where newDate between '2013-08-01' and '2013-08-31'")
+sep2013 <- sqldf("Select * from mosq2013 where newDate between '2013-09-01' and '2013-09-31'")
+oct2013 <- sqldf("Select * from mosq2013 where newDate between '2013-10-01' and '2013-10-31'")
+
 # Select based on month from all 2014 data
 jan2014 <- sqldf("Select * from mosq2014 where newDate between '2014-01-01' and '2014-01-31'")
 feb2014 <- sqldf("Select * from mosq2014 where newDate between '2014-02-01' and '2014-02-31'")
@@ -165,8 +177,20 @@ aug2014 <- sqldf("Select * from mosq2014 where newDate between '2014-08-01' and 
 sep2014 <- sqldf("Select * from mosq2014 where newDate between '2014-09-01' and '2014-09-31'")
 oct2014 <- sqldf("Select * from mosq2014 where newDate between '2014-10-01' and '2014-10-31'")
 
+
 # Select all from treatment zone
 trt <- sqldf("Select * from kdrData where project_code is 'treatment'")
+# Select based on 2013 month from treatment zone
+jan2013t <- sqldf("Select * from trt where newDate between '2013-01-01' and '2013-01-31'")
+feb2013t <- sqldf("Select * from trt where newDate between '2013-02-01' and '2013-02-31'")
+mar2013t <- sqldf("Select * from trt where newDate between '2013-03-01' and '2013-03-31'")
+apr2013t <- sqldf("Select * from trt where newDate between '2013-04-01' and '2013-04-31'")
+may2013t <- sqldf("Select * from trt where newDate between '2013-05-01' and '2013-05-31'")
+jun2013t <- sqldf("Select * from trt where newDate between '2013-06-01' and '2013-06-31'")
+jul2013t <- sqldf("Select * from trt where newDate between '2013-07-01' and '2013-07-31'")
+aug2013t <- sqldf("Select * from trt where newDate between '2013-08-01' and '2013-08-31'")
+sep2013t <- sqldf("Select * from trt where newDate between '2013-09-01' and '2013-09-31'")
+oct2013t <- sqldf("Select * from trt where newDate between '2013-10-01' and '2013-10-31'")
 # Select based on 2014 month from treatment zone
 jan2014t <- sqldf("Select * from trt where newDate between '2014-01-01' and '2014-01-31'")
 feb2014t <- sqldf("Select * from trt where newDate between '2014-02-01' and '2014-02-31'")
@@ -181,6 +205,17 @@ oct2014t <- sqldf("Select * from trt where newDate between '2014-10-01' and '201
 
 # Select all from buffer zone
 buff <- sqldf("Select * from kdrData where project_code is 'buffer'")
+# Select based on 2013 month from buffer zone
+jan2013b <- sqldf("Select * from buff where newDate between '2013-01-01' and '2013-01-31'")
+feb2013b <- sqldf("Select * from buff where newDate between '2013-02-01' and '2013-02-31'")
+mar2013b <- sqldf("Select * from buff where newDate between '2013-03-01' and '2013-03-31'")
+apr2013b <- sqldf("Select * from buff where newDate between '2013-04-01' and '2013-04-31'")
+may2013b <- sqldf("Select * from buff where newDate between '2013-05-01' and '2013-05-31'")
+jun2013b <- sqldf("Select * from buff where newDate between '2013-06-01' and '2013-06-31'")
+jul2013b <- sqldf("Select * from buff where newDate between '2013-07-01' and '2013-07-31'")
+aug2013b <- sqldf("Select * from buff where newDate between '2013-08-01' and '2013-08-31'")
+sep2013b <- sqldf("Select * from buff where newDate between '2013-09-01' and '2013-09-31'")
+oct2013b <- sqldf("Select * from buff where newDate between '2013-10-01' and '2013-10-31'")
 # Select based on 2014 month from buffer zone
 jan2014b <- sqldf("Select * from buff where newDate between '2014-01-01' and '2014-01-31'")
 feb2014b <- sqldf("Select * from buff where newDate between '2014-02-01' and '2014-02-31'")
@@ -273,6 +308,17 @@ h2015 = mc.haps(mosq2015)
 h2016 = mc.haps(mosq2016)
 h2017 = mc.haps(mosq2017)
 
+# For 1016 locus at all months in 2013
+mJan13 <- mc.1016(jan2013)
+mFeb13 <- mc.1016(feb2013)
+mMar13 <- mc.1016(mar2013)
+mApr13 <- mc.1016(apr2013)
+mMay13 <- mc.1016(may2013)
+mJun13 <- mc.1016(jun2013)
+mJul13 <- mc.1016(jul2013)
+mAug13 <- mc.1016(aug2013)
+mSep13 <- mc.1016(sep2013)
+mOct13 <- mc.1016(oct2013)
 # For 1016 locus at all months in 2014
 mJan <- mc.1016(jan2014)
 mFeb <- mc.1016(feb2014)
@@ -285,6 +331,17 @@ mAug <- mc.1016(aug2014)
 mSep <- mc.1016(sep2014)
 mOct <- mc.1016(oct2014)
 
+# For 1534 locus at all months in 2013
+sJan13 <- mc.1534(jan2013)
+sFeb13 <- mc.1534(feb2013)
+sMar13 <- mc.1534(mar2013)
+sApr13 <- mc.1534(apr2013)
+sMay13 <- mc.1534(may2013)
+sJun13 <- mc.1534(jun2013)
+sJul13 <- mc.1534(jul2013)
+sAug13 <- mc.1534(aug2013)
+sSep13 <- mc.1534(sep2013)
+sOct13 <- mc.1534(oct2013)
 # For 1534 locus at all months in 2014
 sJan <- mc.1534(jan2014)
 sFeb <- mc.1534(feb2014)
@@ -297,6 +354,17 @@ sAug <- mc.1534(aug2014)
 sSep <- mc.1534(sep2014)
 sOct <- mc.1534(oct2014)
 
+# For 1016 locus at all months in 2013 - treatment zone
+tJan13 <- mc.1016(jan2013t)
+tFeb13 <- mc.1016(feb2013t)
+tMar13 <- mc.1016(mar2013t)
+tApr13 <- mc.1016(apr2013t)
+tMay13 <- mc.1016(may2013t)
+tJun13 <- mc.1016(jun2013t)
+tJul13 <- mc.1016(jul2013t)
+tAug13 <- mc.1016(aug2013t)
+tSep13 <- mc.1016(sep2013t)
+tOct13 <- mc.1016(oct2013t)
 # For 1016 locus at all months in 2014 - treatment zone
 tJan <- mc.1016(jan2014t)
 tFeb <- mc.1016(feb2014t)
@@ -309,6 +377,17 @@ tAug <- mc.1016(aug2014t)
 tSep <- mc.1016(sep2014t)
 tOct <- mc.1016(oct2014t)
 
+# For 1016 locus at all months in 2013 - buffer zone
+bJan13 <- mc.1016(jan2013b)
+bFeb13 <- mc.1016(feb2013b)
+bMar13 <- mc.1016(mar2013b)
+bApr13 <- mc.1016(apr2013b)
+bMay13 <- mc.1016(may2013b)
+bJun13 <- mc.1016(jun2013b)
+bJul13 <- mc.1016(jul2013b)
+bAug13 <- mc.1016(aug2013b)
+bSep13 <- mc.1016(sep2013b)
+bOct13 <- mc.1016(oct2013b)
 # For 1016 locus at all months in 2014 - buffer zone
 bJan <- mc.1016(jan2014b)
 bFeb <- mc.1016(feb2014b)
@@ -351,22 +430,38 @@ dfHaps <- rbind(h2000, h2001, h2002, h2003, h2004, h2005, h2006
 # Add year ID to rows in df rename
 mc.haps.yr <- cbind(dfHaps, year)
 
+# For 1016 locus at all months in 2013
+df13.1016 <- rbind(mJan13, mFeb13, mMar13, mApr13, mMay13, mJun13, mJul13, mAug13, mSep13, mOct13)
+# Add year ID to rows in df rename
+mc.1016.mo13 <- cbind(month, df13.1016)
 # For 1016 locus at all months in 2014
 df14.1016 <- rbind(mJan, mFeb, mMar, mApr, mMay, mJun, mJul, mAug, mSep, mOct)
 # Add year ID to rows in df rename
 mc.1016.mo <- cbind(month, df14.1016)
 
+# For 1534 locus at all months in 2013
+df13.1534 <- rbind(sJan13, sFeb13, sMar13, sApr13, sMay13, sJun13, sJul13, sAug13, sSep13, sOct13)
+# Add year ID to rows in df rename
+mc.1534.mo13 <- cbind(month, df13.1534)
 # For 1534 locus at all months in 2014
 df14.1534 <- rbind(sJan, sFeb, sMar, sApr, sMay, sJun, sJul, sAug, sSep, sOct)
 # Add year ID to rows in df rename
 mc.1534.mo <- cbind(month, df14.1534)
 
+# For 1016 locus at all months in 2013 - treatment zone
+dftrt13 <- rbind(tJan13, tFeb13, tMar13, tApr13, tMay13, tJun13, tJul13, tAug13, tSep13, tOct13)
+# Add year ID to rows in df rename
+mc.1016.t13 <- cbind(month, dftrt13)
 # For 1016 locus at all months in 2014 - treatment zone
 dftrt <- rbind(tJan, tFeb, tMar, tApr, tMay, tJun, tJul, tAug, tSep, tOct)
 # Add year ID to rows in df rename
 mc.1016.t <- cbind(month, dftrt)
 
-# Create data frame from all runs of function
+# For 1016 locus at all months in 2013 - buffer zone
+dfbuff13 <- rbind(bJan13, bFeb13, bMar13, bApr13, bMay13, bJun13, bJul13, bAug13, bSep13, bOct13)
+# Add year ID to rows in df rename
+mc.1016.b13 <- cbind(month, dfbuff13)
+# For 1016 locus at all months in 2014 - buffer zone
 dfbuff <- rbind(bJan, bFeb, bMar, bApr, bMay, bJun, bJul, bAug, bSep, bOct)
 # Add year ID to rows in df rename
 mc.1016.b <- cbind(month, dfbuff)
@@ -375,139 +470,57 @@ mc.1016.b <- cbind(month, dfbuff)
 # mc.1016.yr
 # mc.1534.yr
 # mc.haps.yr
+# mc.1016.mo13
 # mc.1016.mo
+# mc.1534.mo13
 # mc.1534.mo
+# mc.1016.t13
 # mc.1016.t
+# mc.1016.b13
 # mc.1016.b
 
 ### To save dataframes required for plots, selection coefficient, and other analyses
 write.csv(mc.1016.yr, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1016.yr.csv", row.names = F)
 write.csv(mc.1534.yr, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1534.yr.csv", row.names = F)
 write.csv(mc.haps.yr, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.haps.yr_reduced.csv", row.names = F)
+write.csv(mc.1016.mo13, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1016.mo13.csv", row.names = F)
 write.csv(mc.1016.mo, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1016.mo.csv", row.names = F)
+write.csv(mc.1534.mo13, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1534.mo13.csv", row.names = F)
 write.csv(mc.1534.mo, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1534.mo.csv", row.names = F)
+write.csv(mc.1016.t13, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1016.t13.csv", row.names = F)
 write.csv(mc.1016.t, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1016.t.csv", row.names = F)
+write.csv(mc.1016.b13, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1016.b13.csv", row.names = F)
 write.csv(mc.1016.b, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1016.b.csv", row.names = F)
 
+
 # 12 ################################################################################
-### Plot Frequency of Resistance Alleles at two loci across years
-# Plot based off of dataframes mc.1016.yr and mc.1534.yr
+### Plot Frequency of Resistance Allele at 1016 locus by zone for year 2013
+# Plot based off of dataframes mc.1016.t13 and mc.1016.b13
+source("R_Scripts/IQTmosq/plot_kdrZones13.R")
+# kdrZones13
 
-source("R_Scripts/IQTmosq/plot_kdrYears.R")
-kdrYears
-
-# # Write plot to pdf
-# pdf(file = paste("figures/kdrYears/kdrYears_", Sys.Date(), ".pdf", sep = ""), 11, 8.5)
-# print(kdrYears)
-# dev.off()
-
-# Write plot to png file
-ggsave(filename = paste0("figures/kdrYears/kdrYears_", Sys.Date(), ".png"), width = 11, height = 8, dpi = 600, units = "in", device='png')
+### Plot Frequency of Resistance Allele at 1016 locus by zone for year 2014
+# Plot based off of dataframes mc.1016.t and mc.1016.b
+source("R_Scripts/IQTmosq/plot_kdrZones.R")
+# kdrZones
 
 
-  
-# # 13 ################################################################################
+# 13 ################################################################################
+### Plot Frequency of Haplotypes across time
+source("R_Scripts/IQTmosq/run_Haplotype_Imputation.R")
+# kdrHaps
+
+# # 14 ################################################################################
 # ### Plot Frequency of Resistance Allele at 1016 locus across year 2014
 # # Plot based off of dataframe mc.1016.mo
 # 
 # source("R_Scripts/IQTmosq/plot_kdrMonths.R")
 # kdrMonths
 # 
-# # Write plot to pdf
-# pdf(file = paste("figures/kdrMonths/kdrMonths_", Sys.Date(), ".pdf", sep = ""), 11, 8.5)
-# print(kdrMonths)
-# dev.off()
-
-
-# 14 ################################################################################
-### Plot Frequency of Resistance Allele at 1016 locus by zone
-# Plot based off of dataframes mc.1016.t and mc.1016.b
-
-source("R_Scripts/IQTmosq/plot_kdrZones.R")
-kdrZones
-
-# Write plot to pdf
-pdf(file = paste("figures/kdrZones/kdrZones_", Sys.Date(), ".pdf", sep = ""), 11, 8.5)
-print(kdrZones)
-dev.off
-
-
-# 15 ################################################################################
-### Plot Frequency of Haplotypes across time
-
-source("R_Scripts/IQTmosq/run_Haplotype_Imputation.R")
-kdrHaps
-
-# Write plot to png
-ggsave(filename = paste0("figures/kdrHaps/kdrHaps_", Sys.Date(), ".png"), width = 11, height = 8, dpi = 600, units = "in", device='png')
-
-
-
-
-
-####################################################################################
-####################################################################################
-####################################################################################
-# SCRATCH ##########################################################################
-# b <- c(mosq2000, mosq2001)
-# for (i in b){
-#   print(head(i))
-# }
-
-### Find Rows in kdrData_all.csv where zone columns do not match
-# This ignores NAs in the dataset
-
-# no_match_zone_1016 <- sqldf("SELECT * 
-#                             FROM kdrData_all
-#                             WHERE Zone1016_1 != Zone1016_2
-#                             ")
-# 
-# no_match_zone_1534 <- sqldf("SELECT * 
-#                             FROM kdrData_all
-#                             WHERE Zone1534_1 != Zone1534_2
-#                             ")
-# x ################################################################################
-### Find rows where one replicate is equal to "error"
-#not working - needs work
-
-# errorFind <- sqldf("Select *
-#                    From kdrData_all
-#                    Where k.Rep1_1016 = error
-#                    ")
-
-
-# x ################################################################################
-### Keep only rows where two columns match per locus
-#not working - needs work
-
-# match1016 <- sqldf ("SELECT *
-#                     FROM kdrData_all as k
-#                     WHERE k.'Rep1_1016' == k.'Rep2_1016'
-#                     ")
-# 
-# match1534 <- sqldf ("SELECT *
-#                     From kdrData_all as k
-#                     WHERE k.'Rep1_1534' == k.'Rep2_1534'
-#                     ")
-
-
-# x ################################################################################
-### Keep only those rows where two columns match
-# tstZone <- isolGenosBoth[isolGenosBoth$Zone == isolGenosBoth$Zone1016,]
-# head(tstZone)
-# 
-# tstZone2 <- match(isolGenosBoth$Zone,isolGenosBoth$Zone1016)
-# 
-# dim(isolLog)
-
-
-
-
-
-
-
-
-
-
+# # 15 ################################################################################
+# ### Plot Frequency of Resistance Alleles at two loci across years
+# # Plot based off of dataframes mc.1016.yr and mc.1534.yr
+# source("R_Scripts/IQTmosq/plot_kdrYears.R")
+# # kdrYears
 
 

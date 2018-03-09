@@ -141,10 +141,7 @@ kdrYears <- ggplot(mc.1016.yr, aes(x=year, y=freqR)) +
   theme(legend.title = element_text(size = 14, face = "bold"), legend.text = element_text(size=12)) 
 
  kdrYears
-
-# # Write plot to pdf
-# pdf(file = paste("figures/kdrYears_reduced", Sys.Date(), ".pdf", sep = ""), 11, 8.5)
-# print(kdrYears)
-# dev.off()
-
-#ggsave(file=paste0("figures/kdrYears_", Sys.Date(), ".png"), plot=kdrYears)
+ 
+ # Write plot to png file
+ ggsave(filename = paste0("figures/kdrYears/kdrYears_", Sys.Date(), ".png"), width = 11, height = 8, dpi = 600, units = "in", device='png')
+ 

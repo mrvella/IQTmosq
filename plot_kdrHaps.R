@@ -1,5 +1,4 @@
 # Plot the frequency of kdr haplotypes over time with ggplot()
-# Last updated: 29 Sep 2017
 
 # Load required libraries
 library(ggplot2)
@@ -112,6 +111,9 @@ kdrHaps <- ggplot(data = freqAll_long[!is.na(freqAll_long$Frequency),], aes(x=ye
         , legend.title.align=0.5) 
 
 kdrHaps
+
+# Write plot to png
+ggsave(filename = paste0("figures/kdrHaps/kdrHaps_", Sys.Date(), ".png"), width = 11, height = 8, dpi = 600, units = "in", device='png')
 
 
 # # Source function to move x-axis with labels

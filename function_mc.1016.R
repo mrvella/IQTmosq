@@ -4,7 +4,6 @@
 # For 1016 Locus
 # Apply to each year 
 # Created 6-16-17
-# Last edit 6-16-17
 ###################################################################################################
 
 ### Function to create dataframe of genotype counts, allele frequency of R, and +/- 95% confidence interval

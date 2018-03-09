@@ -1,4 +1,4 @@
-### Plot Frequency of Resistance Allele at 1016 locus by zone
+### Plot Frequency of Resistance Allele at 1016 locus by zone for year 2014
 # Plot based off of dataframes mc.1016.t and mc.1016.b
 # Last update: 23 Oct 2017
 
