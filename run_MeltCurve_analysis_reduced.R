@@ -34,10 +34,10 @@ source("R_Scripts/IQTmosq/loop_MeltCurve_catFiles.R")
 setwd("~/Dropbox/GouldLab/Project_Mosquito/Database")
 
 # 3 ################################################################################
-### load isolation log
+### load isolation log and name it kdrData
 # Note: make sure that IsolationLog_IQT-Mosq.csv file has the date column in the MM-DD-YYYY format
-isolLog <- read.csv("IsolationLog_IQT-Mosq.csv", header = T, sep = ",")
-kdrData <- isolLog
+kdrData <- read.csv("IsolationLog_IQT-Mosq.csv", header = T, sep = ",")
+
 # Convert current date to readable form for R
 kdrData$newDate <- as.character(as.Date(as.character(kdrData$Date), format = "%m/%d/%Y"))
 # Note: If year starts with 00 after conversion, then go back and save IsolationLog_IQT-Mosq.csv
@@ -480,17 +480,17 @@ mc.1016.b <- cbind(month, dfbuff)
 # mc.1016.b
 
 ### To save dataframes required for plots, selection coefficient, and other analyses
-write.csv(mc.1016.yr, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1016.yr.csv", row.names = F)
-write.csv(mc.1534.yr, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1534.yr.csv", row.names = F)
+write.csv(mc.1016.yr, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1016.yr_reduced.csv", row.names = F)
+write.csv(mc.1534.yr, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1534.yr_reduced.csv", row.names = F)
 write.csv(mc.haps.yr, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.haps.yr_reduced.csv", row.names = F)
-write.csv(mc.1016.mo13, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1016.mo13.csv", row.names = F)
-write.csv(mc.1016.mo, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1016.mo.csv", row.names = F)
-write.csv(mc.1534.mo13, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1534.mo13.csv", row.names = F)
-write.csv(mc.1534.mo, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1534.mo.csv", row.names = F)
-write.csv(mc.1016.t13, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1016.t13.csv", row.names = F)
-write.csv(mc.1016.t, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1016.t.csv", row.names = F)
-write.csv(mc.1016.b13, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1016.b13.csv", row.names = F)
-write.csv(mc.1016.b, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1016.b.csv", row.names = F)
+write.csv(mc.1016.mo13, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1016.mo13_reduced.csv", row.names = F)
+write.csv(mc.1016.mo, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1016.mo_reduced.csv", row.names = F)
+write.csv(mc.1534.mo13, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1534.mo13_reduced.csv", row.names = F)
+write.csv(mc.1534.mo, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1534.mo_reduced.csv", row.names = F)
+write.csv(mc.1016.t13, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1016.t13_reduced.csv", row.names = F)
+write.csv(mc.1016.t, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1016.t_reduced.csv", row.names = F)
+write.csv(mc.1016.b13, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1016.b13_reduced.csv", row.names = F)
+write.csv(mc.1016.b, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1016.b_reduced.csv", row.names = F)
 
 
 # 12 ################################################################################

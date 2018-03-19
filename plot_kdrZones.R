@@ -6,6 +6,9 @@
 mc.1016.t <- read.csv("mc.1016.t.csv")
 mc.1016.b <- read.csv("mc.1016.b.csv")
 
+# 3/19/18 - Subset mc.1016.t to remove March data because sample size is too low currently n = 4
+mc.1016.t <- mc.1016.t[-3,]
+
 # Plot
 kdrZones <- ggplot(mc.1016.t, aes(x=month, y=freqR)) +
   theme(plot.background = element_blank()
@@ -70,7 +73,7 @@ kdrZones <- ggplot(mc.1016.t, aes(x=month, y=freqR)) +
 kdrZones
  
 # Write plot to png
-ggsave(filename = paste0("figures/kdrZones/kdrZones_", Sys.Date(), ".png"), width = 11, height = 8, dpi = 600, units = "in", device='png')
+ggsave(filename = paste0("figures/kdrZones/kdrZones_2014/kdrZones_", Sys.Date(), ".png"), width = 11, height = 8, dpi = 600, units = "in", device='png')
  
 # 
 # # Write plot to pdf

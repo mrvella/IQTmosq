@@ -2,7 +2,6 @@
 # This file is to create a subset of the masterdec that 
 # contains all of the houses from where we have samples
 # Started 30 Aug 2017
-# Edited: 24 Oct 2017
 ##################### 
 
 ### clear working environment
@@ -12,7 +11,7 @@ rm(list = ls())
 setwd("~/Dropbox/GouldLab/Project_Mosquito/Database")
 
 # kdrData_reduced_[date].csv is the file that contains all samples with kdr genotypes and known location codes
-kdr <- read.csv("kdrData_reduced_2017-10-24.csv", header = T, sep = ",")
+kdr <- read.csv("kdrData_reduced_2018-03-12.csv", header = T, sep = ",")
 
 ### change working directory to QGIS 
 setwd("~/Dropbox/GouldLab/Project_Mosquito/QGIS_Files/Routput")
@@ -29,7 +28,9 @@ keep <- c("SSSS", "RRRR", "SSRR", "SSSR", "SRRR", "SRSS", "SRSR", "RRSS")
 masterdec_kdr_all <- masterdec_kdr[masterdec_kdr$haplotype %in% keep,]
 
 # Create file to import into QGIS
-write.csv(masterdec_kdr_all, "masterdec_kdr.csv", row.names = F)
+# write.csv(masterdec_kdr_all, "masterdec_kdr_2018-03-12.csv", row.names = F)
+write.csv(masterdec_kdr_all, paste0("masterdec_kdr", Sys.Date(), ".csv"), row.names = F)
+
 
 ##################################################################################
 # Subset masterdec_kdr_all$newDate on year
@@ -50,6 +51,7 @@ masterdec_2013 <- masterdec_kdr_all[format.Date(masterdec_kdr_all$newDate, "%Y")
 masterdec_2014 <- masterdec_kdr_all[format.Date(masterdec_kdr_all$newDate, "%Y")==2014,]
 masterdec_2015 <- masterdec_kdr_all[format.Date(masterdec_kdr_all$newDate, "%Y")==2015,]
 masterdec_2016 <- masterdec_kdr_all[format.Date(masterdec_kdr_all$newDate, "%Y")==2016,]
+masterdec_2017 <- masterdec_kdr_all[format.Date(masterdec_kdr_all$newDate, "%Y")==2017,]
 
 # Create files for each masterdec_[year] data frame
 write.csv(masterdec_2000, "masterdec_2000.csv", row.names = F)
@@ -69,6 +71,7 @@ write.csv(masterdec_2013, "masterdec_2013.csv", row.names = F)
 write.csv(masterdec_2014, "masterdec_2014.csv", row.names = F)
 write.csv(masterdec_2015, "masterdec_2015.csv", row.names = F)
 write.csv(masterdec_2016, "masterdec_2016.csv", row.names = F)
+write.csv(masterdec_2017, "masterdec_2017.csv", row.names = F)
 
 
 

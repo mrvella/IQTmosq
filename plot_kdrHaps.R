@@ -25,7 +25,7 @@ kdrHaps <- ggplot(data = freqAll_long[!is.na(freqAll_long$Frequency),], aes(x=ye
   #ylim(c(-0.1, 1.1)) +
   scale_y_continuous(limits=c(-0.05, 1.1), breaks=c(0.0,0.2, 0.4, 0.6, 0.8, 1.0)) +
   scale_x_continuous(breaks = pretty(freqAll_long$year, n = 8)) +
-  scale_colour_discrete(name ="Haplotype", labels=c("wt1016/wt1534", "wt1016/Cys1534", "Ile1016/wt1534", "Ile1016/Cys1534")) +
+  #scale_colour_discrete(name ="Haplotype", labels=c("wt1016/wt1534", "wt1016/Cys1534", "Ile1016/wt1534", "Ile1016/Cys1534")) +
   #geom_hline(yintercept = 0) +
 
   ### Add background to represent type of insecticides used
@@ -48,7 +48,7 @@ kdrHaps <- ggplot(data = freqAll_long[!is.na(freqAll_long$Frequency),], aes(x=ye
   # No pyrethroids
   geom_rect(data = NULL, aes(xmin = 2014.5, xmax = 2018.0, ymin = -Inf, ymax = Inf), fill="turquoise", alpha = 0.005) +
 
-  # ### Add text to represent type of insecticides used
+  ### Add text to represent type of insecticides used
   annotate("text", x= 2008.0, y=1.09, label = "Pyrethroids", size = 5, fontface = 2) +
   annotate("text", x=2000.25, y=1.09, label = "No \n Pyrethroids", size = 5, fontface = 2) +
   # annotate("text", x=2003.75, y=-0.09, label= "Deltamethrin", size = 4) +
@@ -91,15 +91,19 @@ kdrHaps <- ggplot(data = freqAll_long[!is.na(freqAll_long$Frequency),], aes(x=ye
        ) +
   colScale +
   
-  # ### Add selection coefficient to select years
-  # annotate("text", x=2001.5, y = 0.08, label = round(mc.1534.yr$Dom.Sel.Coef.for.q[2], digits = 2), color = "red", fontface = 2, size = 4) +
-  # annotate("text", x=2002.25, y = 0.3, label = round(mc.1534.yr$Dom.Sel.Coef.for.q[3], digits = 2), color = "red", fontface = 2, size = 4) +
-  # annotate("text", x=2003.25, y = 0.6, label = round(mc.1534.yr$Dom.Sel.Coef.for.q[4], digits = 2), color = "red", fontface = 2, size = 4) +
-  # annotate("text", x=2004.0, y = 0.8, label = round(mc.1534.yr$Dom.Sel.Coef.for.q[5], digits = 2), color = "red", fontface = 2, size = 4) +
-  # annotate("text", x=2010.3, y = 0.09, label = round(mc.1016.yr$Dom.Sel.Coef.for.q[11], digits = 2), color = "red", fontface = 2, size = 4) +
-  # annotate("text", x=2011.3, y = 0.25, label = round(mc.1016.yr$Dom.Sel.Coef.for.q[12], digits = 2), color = "red", fontface = 2, size = 4) +
-  # annotate("text", x=2012.9, y = 0.6, label = round(mc.1016.yr$Dom.Sel.Coef.for.q[13], digits = 2), color = "red", fontface = 2, size = 4) +
-  # annotate("text", x=2015.4, y = 0.7, label = round(mc.1016.yr$Dom.Sel.Coef.for.q[14], digits = 2), color = "red", fontface = 2, size = 4) +
+  ### Add selection coefficient to select years
+  annotate("text", x=2001.0, y = 0.08, label = round(mc.1534.yr$Dom.Sel.Coef.for.q[2], digits = 2), color = "red", fontface = 2, size = 7) +
+  annotate("text", x=2001.85, y = 0.28, label = round(mc.1534.yr$Dom.Sel.Coef.for.q[3], digits = 2), color = "red", fontface = 2, size = 7) +
+  annotate("text", x=2002.8, y = 0.6, label = round(mc.1534.yr$Dom.Sel.Coef.for.q[4], digits = 2), color = "red", fontface = 2, size = 7) +
+  annotate("text", x=2003.8, y = 0.85, label = round(mc.1534.yr$Dom.Sel.Coef.for.q[5], digits = 2), color = "red", fontface = 2, size = 7) +
+  
+  annotate("text", x=2009.75, y = 0.14, label = round(mc.1016.yr$Dom.Sel.Coef.for.q[11], digits = 2), color = "red", fontface = 2, size = 7) +
+  annotate("text", x=2010.72, y = 0.3, label = round(mc.1016.yr$Dom.Sel.Coef.for.q[12], digits = 2), color = "red", fontface = 2, size = 7) +
+  annotate("text", x=2011.75, y = 0.47, label = round(mc.1016.yr$Dom.Sel.Coef.for.q[13], digits = 2), color = "red", fontface = 2, size = 7) +
+  annotate("text", x=2012.65, y = 0.65, label = round(mc.1016.yr$Dom.Sel.Coef.for.q[14], digits = 2), color = "red", fontface = 2, size = 7) +
+  # annotate("text", x=2014.62, y = 0.76, label = round(mc.1016.yr$Dom.Sel.Coef.for.q[15], digits = 2), color = "red", fontface = 2, size = 4) +
+  # annotate("text", x=2015.65, y = 0.7, label = round(mc.1016.yr$Dom.Sel.Coef.for.q[16], digits = 2), color = "red", fontface = 2, size = 4) +
+  # annotate("text", x=2016.5, y = 0.68, label = round(mc.1016.yr$Dom.Sel.Coef.for.q[17], digits = 2), color = "red", fontface = 2, size = 4) +
   
   
   theme(plot.subtitle=element_text(size=18, hjust=0.5, face="italic")

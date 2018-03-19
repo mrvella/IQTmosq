@@ -20,10 +20,12 @@ df$newDate <- as.character(as.Date(as.character(df$date), format = "%m/%d/%Y"))
 
 ################################################################################
 # To look up unknown isolated samples in mathmodelinventory
-x <- df[df$newDate >= as.Date("2014-10-01") & df$newDate <= as.Date("2014-10-01"),]
+x <- df[df$newDate >= as.Date("2013-03-31") & df$newDate <= as.Date("2013-03-01"),]
+# OR
+y <- sqldf("Select * from df where newDate between '2013-03-01' and '2013-03-31'")
 
 # To subset based on partial location code
-subset(df, grepl("PTB735", df$Location_code))
+subset(df, grepl("PTA152", df$Location_code))
 
 
 

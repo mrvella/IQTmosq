@@ -14,9 +14,13 @@ library(dplyr)
 mc.1016.t <- read.csv("mc.1016.t.csv")
 mc.1016.b <- read.csv("mc.1016.b.csv")
 
+# 3/19/18 - Subset mc.1016.t to remove March data because sample size is too low, currently n = 4
+mc.1016.t <- mc.1016.t[-3,]
+mc.1016.b <- mc.1016.b[-3,]
+
 # Add column for treatment type
 # for spray region
-list1 <- 1:10
+list1 <- 1:9
 treatment <- rep("spray",length(list1))
 mc.1016.t <- cbind(mc.1016.t, treatment)
 mc.1016.t

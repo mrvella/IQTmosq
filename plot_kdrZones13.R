@@ -27,11 +27,9 @@ kdrZones13 <- ggplot(mc.1016.t13, aes(x=month, y=freqR)) +
                      , values = c("Treatment" = "red", "Buffer" = "blue")
                      , labels = c("Spray Zone", "Buffer Zone")
                      , breaks=c("Treatment","Buffer")) +
-  #Add yellow background to represent spray periods
-  geom_rect(data = NULL, aes(xmin = 1.95, xmax = 2.05, ymin = -Inf, ymax = Inf)
-            , fill="yellow", alpha = 0.05) +
-  annotate("text", x=2, y=0.5, label= "City Wide", size = 5) +
-  geom_rect(data = NULL, aes(xmin = 4.6, xmax = 5.4, ymin = -Inf, ymax = Inf)
+  # Add yellow background to represent spray periods
+  # Spray date range: 4/29/13 (4.96) - 6/3/13 (6.1)
+  geom_rect(data = NULL, aes(xmin = 4.96, xmax = 6.1, ymin = -Inf, ymax = Inf)
             , fill="yellow", alpha = 0.05) +
   annotate("text", x=5, y=0.5, label= "Experimental", size = 5) +
   #Add data
@@ -70,7 +68,7 @@ kdrZones13 <- ggplot(mc.1016.t13, aes(x=month, y=freqR)) +
 kdrZones13
  
 # Write plot to png
-ggsave(filename = paste0("figures/kdrZones/kdrZones13_", Sys.Date(), ".png"), width = 11, height = 8, dpi = 600, units = "in", device='png')
+#ggsave(filename = paste0("figures/kdrZones/kdrZones_2013/kdrZones13_", Sys.Date(), ".png"), width = 11, height = 8, dpi = 600, units = "in", device='png')
  
 # 
 # # Write plot to pdf
