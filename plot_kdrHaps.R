@@ -5,7 +5,7 @@ library(ggplot2)
 library(RColorBrewer)
 
 # Create custom color palette
-myColors <- c("#008000", "#0000ff", "#800000", "#000000")
+myColors <- c("#117733", "#332288", "#CC6677", "#882255")
 names(myColors) <- levels(freqAll_long$Haplotype)
 colScale <- scale_colour_manual(name = "Haplotype",values = myColors)
 
@@ -30,9 +30,9 @@ kdrHaps <- ggplot(data = freqAll_long[!is.na(freqAll_long$Frequency),], aes(x=ye
 
   ### Add background to represent type of insecticides used
   # Pyrethroids 2002 - 2014
-  geom_rect(data = NULL, aes(xmin = 2001.5, xmax = 2014.5, ymin = -Inf, ymax = Inf), fill="tan", alpha = 0.005) +
+  geom_rect(data = NULL, aes(xmin = 2001.5, xmax = 2014.5, ymin = -Inf, ymax = Inf), fill="#DDCC77", alpha = 0.005) +
   # No pyrethroids
-  geom_rect(data = NULL, aes(xmin = 1999.0, xmax = 2001.5, ymin = -Inf, ymax = Inf), fill="turquoise", alpha = 0.005) +
+  geom_rect(data = NULL, aes(xmin = 1999.0, xmax = 2001.5, ymin = -Inf, ymax = Inf), fill="#88CCEE", alpha = 0.005) +
   # # Delatmethrin 2002 - 2006
   # geom_rect(data = NULL, aes(xmin = 2001.5, xmax = 2006.0, ymin = -Inf, ymax = Inf), fill="#F0E442", alpha = 0.01) +
   # # Cypermethrin 2006 - 2008
@@ -46,7 +46,7 @@ kdrHaps <- ggplot(data = freqAll_long[!is.na(freqAll_long$Frequency),], aes(x=ye
   # # Cypermethrin 2014
   # geom_rect(data = NULL, aes(xmin = 2013.5, xmax = 2014.5, ymin = -Inf, ymax = Inf), fill="#E69F00", alpha = 0.01) +
   # No pyrethroids
-  geom_rect(data = NULL, aes(xmin = 2014.5, xmax = 2018.0, ymin = -Inf, ymax = Inf), fill="turquoise", alpha = 0.005) +
+  geom_rect(data = NULL, aes(xmin = 2014.5, xmax = 2018.0, ymin = -Inf, ymax = Inf), fill="#88CCEE", alpha = 0.005) +
 
   ### Add text to represent type of insecticides used
   annotate("text", x= 2008.0, y=1.09, label = "Pyrethroids", size = 5, fontface = 2) +
@@ -61,25 +61,25 @@ kdrHaps <- ggplot(data = freqAll_long[!is.na(freqAll_long$Frequency),], aes(x=ye
   
   
   ### Add n to each year
-  annotate("text", x=1999.3, y=-0.03, label = "n =", fontface = 2, color = "blue") +
-  annotate("text", x=2000, y=-0.03, label = mc.haps.yr$n[1], fontface = 2, color = "blue") +
-  annotate("text", x=2001, y=-0.03, label = mc.haps.yr$n[2], fontface = 2, color = "blue") +
-  annotate("text", x=2002, y=-0.03, label = mc.haps.yr$n[3], fontface = 2, color = "blue") +
-  annotate("text", x=2003, y=-0.03, label = mc.haps.yr$n[4], fontface = 2, color = "blue") +
-  annotate("text", x=2004, y=-0.03, label = mc.haps.yr$n[5], fontface = 2, color = "blue") +
-  annotate("text", x=2005, y=-0.03, label = mc.haps.yr$n[6], fontface = 2, color = "blue") +
-  annotate("text", x=2006, y=-0.03, label = mc.haps.yr$n[7], fontface = 2, color = "blue") +
-  annotate("text", x=2007, y=-0.03, label = mc.haps.yr$n[8], fontface = 2, color = "blue") +
-  annotate("text", x=2008, y=-0.03, label = mc.haps.yr$n[9], fontface = 2, color = "blue") +
-  annotate("text", x=2009, y=-0.03, label = mc.haps.yr$n[10], fontface = 2, color = "blue") +
-  annotate("text", x=2010, y=-0.03, label = mc.haps.yr$n[11], fontface = 2, color = "blue") +
-  annotate("text", x=2011, y=-0.03, label = mc.haps.yr$n[12], fontface = 2, color = "blue") +
-  annotate("text", x=2012, y=-0.03, label = mc.haps.yr$n[13], fontface = 2, color = "blue") +
-  annotate("text", x=2013, y=-0.03, label = mc.haps.yr$n[14], fontface = 2, color = "blue") +
-  annotate("text", x=2014, y=-0.03, label = mc.haps.yr$n[15], fontface = 2, color = "blue") +
-  annotate("text", x=2015, y=-0.03, label = mc.haps.yr$n[16], fontface = 2, color = "blue") +
-  annotate("text", x=2016, y=-0.03, label = mc.haps.yr$n[17], fontface = 2, color = "blue") +
-  annotate("text", x=2017, y=-0.03, label = mc.haps.yr$n[18], fontface = 2, color = "blue") +
+  annotate("text", x=1999.3, y=-0.03, label = "n =", fontface = 2, color = "#332288") +
+  annotate("text", x=2000, y=-0.03, label = mc.haps.yr$n[1], fontface = 2, color = "#332288") +
+  annotate("text", x=2001, y=-0.03, label = mc.haps.yr$n[2], fontface = 2, color = "#332288") +
+  annotate("text", x=2002, y=-0.03, label = mc.haps.yr$n[3], fontface = 2, color = "#332288") +
+  annotate("text", x=2003, y=-0.03, label = mc.haps.yr$n[4], fontface = 2, color = "#332288") +
+  annotate("text", x=2004, y=-0.03, label = mc.haps.yr$n[5], fontface = 2, color = "#332288") +
+  annotate("text", x=2005, y=-0.03, label = mc.haps.yr$n[6], fontface = 2, color = "#332288") +
+  annotate("text", x=2006, y=-0.03, label = mc.haps.yr$n[7], fontface = 2, color = "#332288") +
+  annotate("text", x=2007, y=-0.03, label = mc.haps.yr$n[8], fontface = 2, color = "#332288") +
+  annotate("text", x=2008, y=-0.03, label = mc.haps.yr$n[9], fontface = 2, color = "#332288") +
+  annotate("text", x=2009, y=-0.03, label = mc.haps.yr$n[10], fontface = 2, color = "#332288") +
+  annotate("text", x=2010, y=-0.03, label = mc.haps.yr$n[11], fontface = 2, color = "#332288") +
+  annotate("text", x=2011, y=-0.03, label = mc.haps.yr$n[12], fontface = 2, color = "#332288") +
+  annotate("text", x=2012, y=-0.03, label = mc.haps.yr$n[13], fontface = 2, color = "#332288") +
+  annotate("text", x=2013, y=-0.03, label = mc.haps.yr$n[14], fontface = 2, color = "#332288") +
+  annotate("text", x=2014, y=-0.03, label = mc.haps.yr$n[15], fontface = 2, color = "#332288") +
+  annotate("text", x=2015, y=-0.03, label = mc.haps.yr$n[16], fontface = 2, color = "#332288") +
+  annotate("text", x=2016, y=-0.03, label = mc.haps.yr$n[17], fontface = 2, color = "#332288") +
+  annotate("text", x=2017, y=-0.03, label = mc.haps.yr$n[18], fontface = 2, color = "#332288") +
   
   ### Add data
   geom_line(aes(colour=Haplotype), size = 2) +
@@ -92,18 +92,18 @@ kdrHaps <- ggplot(data = freqAll_long[!is.na(freqAll_long$Frequency),], aes(x=ye
   colScale +
   
   ### Add selection coefficient to select years
-  annotate("text", x=2001.0, y = 0.08, label = round(mc.1534.yr$Dom.Sel.Coef.for.q[2], digits = 2), color = "red", fontface = 2, size = 7) +
-  annotate("text", x=2001.85, y = 0.28, label = round(mc.1534.yr$Dom.Sel.Coef.for.q[3], digits = 2), color = "red", fontface = 2, size = 7) +
-  annotate("text", x=2002.8, y = 0.6, label = round(mc.1534.yr$Dom.Sel.Coef.for.q[4], digits = 2), color = "red", fontface = 2, size = 7) +
-  annotate("text", x=2003.8, y = 0.85, label = round(mc.1534.yr$Dom.Sel.Coef.for.q[5], digits = 2), color = "red", fontface = 2, size = 7) +
+  annotate("text", x=2001.0, y = 0.08, label = round(mc.1534.yr$Dom.Sel.Coef.for.q[2], digits = 2), color = "#332288", fontface = 2, size = 7) +
+  annotate("text", x=2001.85, y = 0.28, label = round(mc.1534.yr$Dom.Sel.Coef.for.q[3], digits = 2), color = "#332288", fontface = 2, size = 7) +
+  annotate("text", x=2002.8, y = 0.6, label = round(mc.1534.yr$Dom.Sel.Coef.for.q[4], digits = 2), color = "#332288", fontface = 2, size = 7) +
+  annotate("text", x=2003.8, y = 0.85, label = round(mc.1534.yr$Dom.Sel.Coef.for.q[5], digits = 2), color = "#332288", fontface = 2, size = 7) +
   
-  annotate("text", x=2009.75, y = 0.14, label = round(mc.1016.yr$Dom.Sel.Coef.for.q[11], digits = 2), color = "red", fontface = 2, size = 7) +
-  annotate("text", x=2010.72, y = 0.3, label = round(mc.1016.yr$Dom.Sel.Coef.for.q[12], digits = 2), color = "red", fontface = 2, size = 7) +
-  annotate("text", x=2011.75, y = 0.47, label = round(mc.1016.yr$Dom.Sel.Coef.for.q[13], digits = 2), color = "red", fontface = 2, size = 7) +
-  annotate("text", x=2012.65, y = 0.65, label = round(mc.1016.yr$Dom.Sel.Coef.for.q[14], digits = 2), color = "red", fontface = 2, size = 7) +
-  # annotate("text", x=2014.62, y = 0.76, label = round(mc.1016.yr$Dom.Sel.Coef.for.q[15], digits = 2), color = "red", fontface = 2, size = 4) +
-  # annotate("text", x=2015.65, y = 0.7, label = round(mc.1016.yr$Dom.Sel.Coef.for.q[16], digits = 2), color = "red", fontface = 2, size = 4) +
-  # annotate("text", x=2016.5, y = 0.68, label = round(mc.1016.yr$Dom.Sel.Coef.for.q[17], digits = 2), color = "red", fontface = 2, size = 4) +
+  annotate("text", x=2009.75, y = 0.14, label = round(mc.1016.yr$Dom.Sel.Coef.for.q[11], digits = 2), color = "#882255", fontface = 2, size = 7) +
+  annotate("text", x=2010.72, y = 0.3, label = round(mc.1016.yr$Dom.Sel.Coef.for.q[12], digits = 2), color = "#882255", fontface = 2, size = 7) +
+  annotate("text", x=2011.75, y = 0.47, label = round(mc.1016.yr$Dom.Sel.Coef.for.q[13], digits = 2), color = "#882255", fontface = 2, size = 7) +
+  annotate("text", x=2012.65, y = 0.65, label = round(mc.1016.yr$Dom.Sel.Coef.for.q[14], digits = 2), color = "#882255", fontface = 2, size = 7) +
+  # annotate("text", x=2014.62, y = 0.76, label = round(mc.1016.yr$Dom.Sel.Coef.for.q[15], digits = 2), color = "#882255", fontface = 2, size = 4) +
+  # annotate("text", x=2015.65, y = 0.7, label = round(mc.1016.yr$Dom.Sel.Coef.for.q[16], digits = 2), color = "#882255", fontface = 2, size = 4) +
+  # annotate("text", x=2016.5, y = 0.68, label = round(mc.1016.yr$Dom.Sel.Coef.for.q[17], digits = 2), color = "#882255", fontface = 2, size = 4) +
   
   
   theme(plot.subtitle=element_text(size=18, hjust=0.5, face="italic")

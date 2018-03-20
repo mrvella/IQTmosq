@@ -11,6 +11,7 @@ mc.1016.t <- mc.1016.t[-3,]
 
 # Plot
 kdrZones <- ggplot(mc.1016.t, aes(x=month, y=freqR)) +
+  theme_bw() + #removes grey background 
   theme(plot.background = element_blank()
         , panel.grid.major = element_blank()
         , panel.grid.minor = element_blank()
@@ -31,11 +32,9 @@ kdrZones <- ggplot(mc.1016.t, aes(x=month, y=freqR)) +
                      , labels = c("Spray Zone", "Buffer Zone")
                      , breaks=c("Treatment","Buffer")) +
   #Add yellow background to represent spray periods
-  geom_rect(data = NULL, aes(xmin = 1.95, xmax = 2.05, ymin = -Inf, ymax = Inf)
-            , fill="yellow", alpha = 0.05) +
+  geom_rect(data = NULL, aes(xmin = 1.95, xmax = 2.05, ymin = -Inf, ymax = Inf), fill="yellow", alpha = 0.05) +
   annotate("text", x=2, y=0.5, label= "City Wide", size = 5) +
-  geom_rect(data = NULL, aes(xmin = 4.6, xmax = 5.4, ymin = -Inf, ymax = Inf)
-            , fill="yellow", alpha = 0.05) +
+  geom_rect(data = NULL, aes(xmin = 4.6, xmax = 5.4, ymin = -Inf, ymax = Inf), fill="yellow", alpha = 0.05) +
   annotate("text", x=5, y=0.5, label= "Experimental", size = 5) +
   #Add data
   geom_point(data = mc.1016.t, aes(color = "Treatment"), size = 5) +
