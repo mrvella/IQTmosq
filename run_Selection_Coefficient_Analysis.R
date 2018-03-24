@@ -19,7 +19,7 @@ source("R_Scripts/IQTmosq/function_Dom.Sel.Coef.for.q.R")
 source("R_Scripts/IQTmosq/function_NoDom.Sel.Coef.r")
 
 # set number of generations per year
-g = 12 
+g = 12
 
 # Note for this analysis I am assuming that S-allele = p, R-allele = q
 

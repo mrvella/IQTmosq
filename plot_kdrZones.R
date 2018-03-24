@@ -1,8 +1,11 @@
 ### Plot Frequency of Resistance Allele at 1016 locus by zone for year 2014
 # Plot based off of dataframes mc.1016.t and mc.1016.b
-# Last update: 23 Oct 2017
+
+#Load Library
+library(ggplot2)
 
 # Read in dataframes
+setwd("/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database")
 mc.1016.t <- read.csv("mc.1016.t.csv")
 mc.1016.b <- read.csv("mc.1016.b.csv")
 
@@ -33,9 +36,9 @@ kdrZones <- ggplot(mc.1016.t, aes(x=month, y=freqR)) +
                      , breaks=c("Treatment","Buffer")) +
   #Add yellow background to represent spray periods
   geom_rect(data = NULL, aes(xmin = 1.95, xmax = 2.05, ymin = -Inf, ymax = Inf), fill="yellow", alpha = 0.05) +
-  annotate("text", x=2, y=0.5, label= "City Wide", size = 5) +
+  annotate("text", x=2, y=1.0, label= "City Wide", size = 5) +
   geom_rect(data = NULL, aes(xmin = 4.6, xmax = 5.4, ymin = -Inf, ymax = Inf), fill="yellow", alpha = 0.05) +
-  annotate("text", x=5, y=0.5, label= "Experimental", size = 5) +
+  annotate("text", x=5, y=1.0, label= "Experimental", size = 5) +
   #Add data
   geom_point(data = mc.1016.t, aes(color = "Treatment"), size = 5) +
   geom_line(data = mc.1016.t[!is.na(mc.1016.t$freqR),], color = "red", size = 2) +
@@ -45,23 +48,23 @@ kdrZones <- ggplot(mc.1016.t, aes(x=month, y=freqR)) +
   geom_line(data = mc.1016.b[!is.na(mc.1016.b$freqR),], color = "blue", size = 2) +
   geom_errorbar(data = mc.1016.b, aes(ymin=freqR-CI_95, ymax=freqR+CI_95), width=.2
                 , color = "blue", size = 0.7) +
-  # #Add n labels for each point
-  # annotate("text", x=1, y=0.53, label = mc.1016.t$n[1], color = "blue", fontface = 2) +
-  # annotate("text", x=2, y=0.53, label = mc.1016.t$n[2], color = "blue", fontface = 2) +
-  # annotate("text", x=4, y=0.53, label = mc.1016.t$n[4], color = "blue", fontface = 2) +
-  # annotate("text", x=5, y=0.53, label = mc.1016.t$n[5], color = "blue", fontface = 2) +
-  # annotate("text", x=6, y=0.53, label = mc.1016.t$n[6], color = "blue", fontface = 2) +
-  # annotate("text", x=7, y=0.53, label = mc.1016.t$n[7], color = "blue", fontface = 2) +
-  # annotate("text", x=8, y=0.53, label = mc.1016.t$n[8], color = "blue", fontface = 2) +
-  # annotate("text", x=10, y=0.53, label = mc.1016.t$n[10], color = "blue", fontface = 2) +
-  # annotate("text", x=1, y=0.5, label = mc.1016.b$n[1], color = "dark green", fontface = 2) +
-  # annotate("text", x=2, y=0.5, label = mc.1016.b$n[2], color = "dark green", fontface = 2) +
-  # annotate("text", x=4, y=0.5, label = mc.1016.b$n[4], color = "dark green", fontface = 2) +
-  # annotate("text", x=5, y=0.5, label = mc.1016.b$n[5], color = "dark green", fontface = 2) +
-  # annotate("text", x=6, y=0.5, label = mc.1016.b$n[6], color = "dark green", fontface = 2) +
-  # annotate("text", x=7, y=0.5, label = mc.1016.b$n[7], color = "dark green", fontface = 2) +
-  # annotate("text", x=8, y=0.5, label = mc.1016.b$n[8], color = "dark green", fontface = 2) +
-  # annotate("text", x=10, y=0.5, label = mc.1016.b$n[10], color = "dark green", fontface = 2) +
+  #Add n labels for each point
+  annotate("text", x=1, y=0.53, label = mc.1016.t$n[1], color = "red", fontface = 2) +
+  annotate("text", x=2, y=0.53, label = mc.1016.t$n[2], color = "red", fontface = 2) +
+  annotate("text", x=4, y=0.53, label = mc.1016.t$n[3], color = "red", fontface = 2) +
+  annotate("text", x=5, y=0.53, label = mc.1016.t$n[4], color = "red", fontface = 2) +
+  annotate("text", x=6, y=0.53, label = mc.1016.t$n[5], color = "red", fontface = 2) +
+  annotate("text", x=7, y=0.53, label = mc.1016.t$n[6], color = "red", fontface = 2) +
+  annotate("text", x=8, y=0.53, label = mc.1016.t$n[7], color = "red", fontface = 2) +
+  annotate("text", x=10, y=0.53, label = mc.1016.t$n[9], color = "red", fontface = 2) +
+  annotate("text", x=1, y=0.5, label = mc.1016.b$n[1], color = "blue", fontface = 2) +
+  annotate("text", x=2, y=0.5, label = mc.1016.b$n[2], color = "blue", fontface = 2) +
+  annotate("text", x=4, y=0.5, label = mc.1016.b$n[4], color = "blue", fontface = 2) +
+  annotate("text", x=5, y=0.5, label = mc.1016.b$n[5], color = "blue", fontface = 2) +
+  annotate("text", x=6, y=0.5, label = mc.1016.b$n[6], color = "blue", fontface = 2) +
+  annotate("text", x=7, y=0.5, label = mc.1016.b$n[7], color = "blue", fontface = 2) +
+  annotate("text", x=8, y=0.5, label = mc.1016.b$n[8], color = "blue", fontface = 2) +
+  annotate("text", x=10, y=0.5, label = mc.1016.b$n[10], color = "blue", fontface = 2) +
 
   ylim(c(0.5,1)) +
   #xlim(c(1,11)) +

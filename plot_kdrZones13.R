@@ -3,11 +3,13 @@
 # Created: 09 Mar 2018
 
 # Read in dataframes
+setwd("/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database")
 mc.1016.t13 <- read.csv("mc.1016.t13.csv")
 mc.1016.b13 <- read.csv("mc.1016.b13.csv")
 
 # Plot
 kdrZones13 <- ggplot(mc.1016.t13, aes(x=month, y=freqR)) +
+  theme_bw() + #removes grey background 
   theme(plot.background = element_blank()
         , panel.grid.major = element_blank()
         , panel.grid.minor = element_blank()
@@ -29,9 +31,9 @@ kdrZones13 <- ggplot(mc.1016.t13, aes(x=month, y=freqR)) +
                      , breaks=c("Treatment","Buffer")) +
   # Add yellow background to represent spray periods
   # Spray date range: 4/29/13 (4.96) - 6/3/13 (6.1)
-  geom_rect(data = NULL, aes(xmin = 4.96, xmax = 6.1, ymin = -Inf, ymax = Inf)
+  geom_rect(data = NULL, aes(xmin = 4.5, xmax = 5.5, ymin = -Inf, ymax = Inf)
             , fill="yellow", alpha = 0.05) +
-  annotate("text", x=5, y=0.5, label= "Experimental", size = 5) +
+  annotate("text", x=5, y=1.0, label= "Experimental", size = 5) +
   #Add data
   geom_point(data = mc.1016.t13, aes(color = "Treatment"), size = 5) +
   geom_line(data = mc.1016.t13[!is.na(mc.1016.t13$freqR),], color = "red", size = 2) +
@@ -41,25 +43,29 @@ kdrZones13 <- ggplot(mc.1016.t13, aes(x=month, y=freqR)) +
   geom_line(data = mc.1016.b13[!is.na(mc.1016.b13$freqR),], color = "blue", size = 2) +
   geom_errorbar(data = mc.1016.b13, aes(ymin=freqR-CI_95, ymax=freqR+CI_95), width=.2
                 , color = "blue", size = 0.7) +
-  # #Add n labels for each point
-  # annotate("text", x=1, y=0.53, label = mc.1016.t13$n[1], color = "blue", fontface = 2) +
-  # annotate("text", x=2, y=0.53, label = mc.1016.t13$n[2], color = "blue", fontface = 2) +
-  # annotate("text", x=4, y=0.53, label = mc.1016.t13$n[4], color = "blue", fontface = 2) +
-  # annotate("text", x=5, y=0.53, label = mc.1016.t13$n[5], color = "blue", fontface = 2) +
-  # annotate("text", x=6, y=0.53, label = mc.1016.t13$n[6], color = "blue", fontface = 2) +
-  # annotate("text", x=7, y=0.53, label = mc.1016.t13$n[7], color = "blue", fontface = 2) +
-  # annotate("text", x=8, y=0.53, label = mc.1016.t13$n[8], color = "blue", fontface = 2) +
-  # annotate("text", x=10, y=0.53, label = mc.1016.t13$n[10], color = "blue", fontface = 2) +
-  # annotate("text", x=1, y=0.5, label = mc.1016.b13$n[1], color = "dark green", fontface = 2) +
-  # annotate("text", x=2, y=0.5, label = mc.1016.b13$n[2], color = "dark green", fontface = 2) +
-  # annotate("text", x=4, y=0.5, label = mc.1016.b13$n[4], color = "dark green", fontface = 2) +
-  # annotate("text", x=5, y=0.5, label = mc.1016.b13$n[5], color = "dark green", fontface = 2) +
-  # annotate("text", x=6, y=0.5, label = mc.1016.b13$n[6], color = "dark green", fontface = 2) +
-  # annotate("text", x=7, y=0.5, label = mc.1016.b13$n[7], color = "dark green", fontface = 2) +
-  # annotate("text", x=8, y=0.5, label = mc.1016.b13$n[8], color = "dark green", fontface = 2) +
-  # annotate("text", x=10, y=0.5, label = mc.1016.b13$n[10], color = "dark green", fontface = 2) +
+  #Add n labels for each point
+  annotate("text", x=1, y=0.03, label = mc.1016.t13$n[1], color = "red", fontface = 2) +
+  annotate("text", x=2, y=0.03, label = mc.1016.t13$n[2], color = "red", fontface = 2) +
+  annotate("text", x=3, y=0.03, label = mc.1016.t13$n[3], color = "red", fontface = 2) +
+  annotate("text", x=4, y=0.03, label = mc.1016.t13$n[4], color = "red", fontface = 2) +
+  annotate("text", x=5, y=0.03, label = mc.1016.t13$n[5], color = "red", fontface = 2) +
+  annotate("text", x=6, y=0.03, label = mc.1016.t13$n[6], color = "red", fontface = 2) +
+  annotate("text", x=7, y=0.03, label = mc.1016.t13$n[7], color = "red", fontface = 2) +
+  annotate("text", x=8, y=0.03, label = mc.1016.t13$n[8], color = "red", fontface = 2) +
+  annotate("text", x=9, y=0.03, label = mc.1016.t13$n[9], color = "red", fontface = 2) +
+  annotate("text", x=10, y=0.03, label = mc.1016.t13$n[10], color = "red", fontface = 2) +
+  annotate("text", x=1, y=0.0, label = mc.1016.b13$n[1], color = "blue", fontface = 2) +
+  annotate("text", x=2, y=0.0, label = mc.1016.b13$n[2], color = "blue", fontface = 2) +
+  annotate("text", x=3, y=0.0, label = mc.1016.b13$n[3], color = "blue", fontface = 2) +
+  annotate("text", x=4, y=0.0, label = mc.1016.b13$n[4], color = "blue", fontface = 2) +
+  annotate("text", x=5, y=0.0, label = mc.1016.b13$n[5], color = "blue", fontface = 2) +
+  annotate("text", x=6, y=0.0, label = mc.1016.b13$n[6], color = "blue", fontface = 2) +
+  annotate("text", x=7, y=0.0, label = mc.1016.b13$n[7], color = "blue", fontface = 2) +
+  annotate("text", x=8, y=0.0, label = mc.1016.b13$n[8], color = "blue", fontface = 2) +
+  annotate("text", x=9, y=0.0, label = mc.1016.b13$n[9], color = "blue", fontface = 2) +
+  annotate("text", x=10, y=0.0, label = mc.1016.b13$n[10], color = "blue", fontface = 2) +
 
-  ylim(c(0.5,1)) +
+  ylim(c(0.0,1)) +
   #xlim(c(1,11)) +
   scale_x_continuous(breaks = pretty(mc.1016.t13$month, n = 10)) 
 
