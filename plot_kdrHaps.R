@@ -91,19 +91,19 @@ kdrHaps <- ggplot(data = freqAll_long[!is.na(freqAll_long$Frequency),], aes(x=ye
        ) +
   colScale +
   
-  ### Add selection coefficient to select years
-  annotate("text", x=2001.0, y = 0.08, label = round(mc.1534.yr$Dom.Sel.Coef.for.q[2], digits = 2), color = "#332288", fontface = 2, size = 7) +
-  annotate("text", x=2001.85, y = 0.28, label = round(mc.1534.yr$Dom.Sel.Coef.for.q[3], digits = 2), color = "#332288", fontface = 2, size = 7) +
-  annotate("text", x=2002.8, y = 0.6, label = round(mc.1534.yr$Dom.Sel.Coef.for.q[4], digits = 2), color = "#332288", fontface = 2, size = 7) +
-  annotate("text", x=2003.8, y = 0.85, label = round(mc.1534.yr$Dom.Sel.Coef.for.q[5], digits = 2), color = "#332288", fontface = 2, size = 7) +
-  
-  annotate("text", x=2009.75, y = 0.14, label = round(mc.1016.yr$Dom.Sel.Coef.for.q[11], digits = 2), color = "#882255", fontface = 2, size = 7) +
-  annotate("text", x=2010.72, y = 0.3, label = round(mc.1016.yr$Dom.Sel.Coef.for.q[12], digits = 2), color = "#882255", fontface = 2, size = 7) +
-  annotate("text", x=2011.75, y = 0.47, label = round(mc.1016.yr$Dom.Sel.Coef.for.q[13], digits = 2), color = "#882255", fontface = 2, size = 7) +
-  annotate("text", x=2012.65, y = 0.65, label = round(mc.1016.yr$Dom.Sel.Coef.for.q[14], digits = 2), color = "#882255", fontface = 2, size = 7) +
-  # annotate("text", x=2014.62, y = 0.76, label = round(mc.1016.yr$Dom.Sel.Coef.for.q[15], digits = 2), color = "#882255", fontface = 2, size = 4) +
-  # annotate("text", x=2015.65, y = 0.7, label = round(mc.1016.yr$Dom.Sel.Coef.for.q[16], digits = 2), color = "#882255", fontface = 2, size = 4) +
-  # annotate("text", x=2016.5, y = 0.68, label = round(mc.1016.yr$Dom.Sel.Coef.for.q[17], digits = 2), color = "#882255", fontface = 2, size = 4) +
+  # ### Add selection coefficient to select years
+  # annotate("text", x=2001.0, y = 0.08, label = round(mc.1534.yr$Dom.Sel.Coef.for.q[2], digits = 2), color = "#332288", fontface = 2, size = 7) +
+  # annotate("text", x=2001.85, y = 0.28, label = round(mc.1534.yr$Dom.Sel.Coef.for.q[3], digits = 2), color = "#332288", fontface = 2, size = 7) +
+  # annotate("text", x=2002.8, y = 0.6, label = round(mc.1534.yr$Dom.Sel.Coef.for.q[4], digits = 2), color = "#332288", fontface = 2, size = 7) +
+  # annotate("text", x=2003.8, y = 0.85, label = round(mc.1534.yr$Dom.Sel.Coef.for.q[5], digits = 2), color = "#332288", fontface = 2, size = 7) +
+  # 
+  # annotate("text", x=2009.75, y = 0.14, label = round(mc.1016.yr$Dom.Sel.Coef.for.q[11], digits = 2), color = "#882255", fontface = 2, size = 7) +
+  # annotate("text", x=2010.72, y = 0.3, label = round(mc.1016.yr$Dom.Sel.Coef.for.q[12], digits = 2), color = "#882255", fontface = 2, size = 7) +
+  # annotate("text", x=2011.75, y = 0.47, label = round(mc.1016.yr$Dom.Sel.Coef.for.q[13], digits = 2), color = "#882255", fontface = 2, size = 7) +
+  # annotate("text", x=2012.65, y = 0.65, label = round(mc.1016.yr$Dom.Sel.Coef.for.q[14], digits = 2), color = "#882255", fontface = 2, size = 7) +
+  # # annotate("text", x=2014.62, y = 0.76, label = round(mc.1016.yr$Dom.Sel.Coef.for.q[15], digits = 2), color = "#882255", fontface = 2, size = 4) +
+  # # annotate("text", x=2015.65, y = 0.7, label = round(mc.1016.yr$Dom.Sel.Coef.for.q[16], digits = 2), color = "#882255", fontface = 2, size = 4) +
+  # # annotate("text", x=2016.5, y = 0.68, label = round(mc.1016.yr$Dom.Sel.Coef.for.q[17], digits = 2), color = "#882255", fontface = 2, size = 4) +
   
   
   theme(plot.subtitle=element_text(size=18, hjust=0.5, face="italic")

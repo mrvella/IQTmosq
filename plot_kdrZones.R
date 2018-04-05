@@ -27,7 +27,7 @@ kdrZones <- ggplot(mc.1016.t, aes(x=month, y=freqR)) +
         , legend.title = element_text(size = 14, face = "bold")
         , legend.text = element_text(size=12)) +
   
-  labs(x = "Month", y = "Frequency", title = "Frequency of Ile1016/Cys1534 Haplotype \n By Treatment Group"
+  labs(x = "Month", y = "Frequency", title = "Year 2014 \n Frequency of Ile1016/Cys1534 Haplotype By Treatment Group"
        #, subtitle = "Error Bars = 95% CI"
        ) +
   scale_color_manual(name = "Treatment"
@@ -44,11 +44,15 @@ kdrZones <- ggplot(mc.1016.t, aes(x=month, y=freqR)) +
   geom_line(data = mc.1016.t[!is.na(mc.1016.t$freqR),], color = "red", size = 2) +
   geom_errorbar(data = mc.1016.t, aes(ymin=freqR-CI_95, ymax=freqR+CI_95), width=.2
                 , color = " red", size = 0.7) +
+  
   geom_point(data = mc.1016.b, aes(color = "Buffer"), size = 5) +
   geom_line(data = mc.1016.b[!is.na(mc.1016.b$freqR),], color = "blue", size = 2) +
   geom_errorbar(data = mc.1016.b, aes(ymin=freqR-CI_95, ymax=freqR+CI_95), width=.2
                 , color = "blue", size = 0.7) +
-  #Add n labels for each point
+  #geom_smooth(data = mc.1016.t[!is.na(mc.1016.t$freqR),], method='glm', color = "red") +
+  #geom_smooth(data = mc.1016.b[!is.na(mc.1016.b$freqR),], method = "lm", color = "blue") +
+  
+#Add n labels for each point
   annotate("text", x=1, y=0.53, label = mc.1016.t$n[1], color = "red", fontface = 2) +
   annotate("text", x=2, y=0.53, label = mc.1016.t$n[2], color = "red", fontface = 2) +
   annotate("text", x=4, y=0.53, label = mc.1016.t$n[3], color = "red", fontface = 2) +
@@ -76,7 +80,7 @@ kdrZones
  
 # Write plot to png
 ggsave(filename = paste0("figures/kdrZones/kdrZones_2014/kdrZones_", Sys.Date(), ".png"), width = 11, height = 8, dpi = 600, units = "in", device='png')
- 
+
 # 
 # # Write plot to pdf
 # pdf(file = paste("figures/kdrZones/kdrZones_", Sys.Date(), ".pdf", sep = ""), 11, 8.5)

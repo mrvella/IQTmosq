@@ -82,7 +82,7 @@ kdrZones13 <- ggplot(mc.1016.t13, aes(x=month, y=freqR)) +
 kdrZones13
  
 # Write plot to png
-#ggsave(filename = paste0("figures/kdrZones/kdrZones_2013/kdrZones13_", Sys.Date(), ".png"), width = 11, height = 8, dpi = 600, units = "in", device='png')
+ggsave(filename = paste0("figures/kdrZones/kdrZones_2013/kdrZones13_", Sys.Date(), ".png"), width = 11, height = 8, dpi = 600, units = "in", device='png')
  
 # 
 # # Write plot to pdf
