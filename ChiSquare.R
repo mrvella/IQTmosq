@@ -1,6 +1,8 @@
 # Chi-square Test between spray and buffer treatments for each month.
 # Started 4 April 2018
 
+# set working directory
+setwd("~/Dropbox/GouldLab/Project_Mosquito/Database")
 # Load mc.1016.t and mc.1016.b data
 mc.1016.t <- read.csv("mc.1016.t.csv")
 mc.1016.b <- read.csv("mc.1016.b.csv")
@@ -95,8 +97,15 @@ chisq.test(tbl.10)
 
 
 
+### Chi-square with fdr correction
+# I don't think I did this properly - 5/4/18
 
+# NOT RUN {
+smokers  <- c( 83, 90, 129, 70 )
+patients <- c( 86, 93, 136, 82 )
+pairwise.prop.test(smokers, patients)
+# }
 
-
-
-
+bufferZone <- mc.1016.2014$freqR[1:8]; bufferZone
+sprayZone <- mc.1016.2014$freqR[9:16]; sprayZone
+pairwise.prop.test(bufferZone, sprayZone, p.adjust.method = "fdr")

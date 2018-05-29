@@ -480,6 +480,8 @@ mc.1016.b <- cbind(month, dfbuff)
 # mc.1016.b
 
 ### To save dataframes required for plots, selection coefficient, and other analyses
+write.csv(mosq2014, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mosq2014.csv", row.names = F)
+write.csv(mosq2013, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mosq2013.csv", row.names = F)
 write.csv(mc.1016.yr, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1016.yr_reduced.csv", row.names = F)
 write.csv(mc.1534.yr, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1534.yr_reduced.csv", row.names = F)
 write.csv(mc.haps.yr, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.haps.yr_reduced.csv", row.names = F)
