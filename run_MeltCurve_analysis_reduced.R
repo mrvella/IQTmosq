@@ -512,13 +512,13 @@ source("R_Scripts/IQTmosq/plot_kdrZones.R")
 source("R_Scripts/IQTmosq/run_Haplotype_Imputation.R")
 # kdrHaps
 
-# # 14 ################################################################################
-# ### Plot Frequency of Resistance Allele at 1016 locus across year 2014
-# # Plot based off of dataframe mc.1016.mo
-# 
-# source("R_Scripts/IQTmosq/plot_kdrMonths.R")
-# kdrMonths
-# 
+# 14 ################################################################################
+### Plot Frequency of Resistance Allele at 1016 locus across year 2014
+# Plot based off of dataframe mc.1016.mo
+
+source("R_Scripts/IQTmosq/plot_kdrMonths.R")
+kdrMonths
+
 # # 15 ################################################################################
 # ### Plot Frequency of Resistance Alleles at two loci across years
 # # Plot based off of dataframes mc.1016.yr and mc.1534.yr

@@ -12,12 +12,12 @@ wd <- c("MeltCurve_1016_rep1", "MeltCurve_1016_rep2", "MeltCurve_1534_rep1", "Me
 
 # Begin setwd() loop
 for (d in 1:length(wd)) {
-  setwd(file.path("/Users/jenbaltz/Dropbox/GouldLab/MeltCurve/MeltCurve_results/", wd[[d]]))
+  setwd(file.path("/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Data_Mosquito/MeltCurve/MeltCurve_results/", wd[[d]]))
   num_files <- length(list.files())
   
   ### Initialize objects for rbind() loop
   # First part of file path
-  str_First <- file.path("/Users/jenbaltz/Dropbox/GouldLab/MeltCurve/MeltCurve_results"
+  str_First <- file.path("/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Data_Mosquito/MeltCurve/MeltCurve_results/"
                     , wd[[d]], "MeltCurve_")
   # Initial file index 
   i <- 1

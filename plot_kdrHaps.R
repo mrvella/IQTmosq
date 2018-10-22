@@ -13,6 +13,12 @@ colScale <- scale_colour_manual(name = "Haplotype",values = myColors)
 mc.1534.yr <- read.csv("mc.1534.yr_withSelCoeff.csv")
 mc.1016.yr <- read.csv("mc.1016.yr_withSelCoeff.csv")
 
+##########################
+# Key code for this script
+##########################
+# Split data at year 2013
+# head(freqAll_long)
+
 # To plot
 kdrHaps <- ggplot(data = freqAll_long[!is.na(freqAll_long$Frequency),], aes(x=year, y=Frequency)) +
   theme_bw() + #removes grey background  
@@ -24,13 +30,13 @@ kdrHaps <- ggplot(data = freqAll_long[!is.na(freqAll_long$Frequency),], aes(x=ye
   # xlim(c(2000, 2017)) +
   #ylim(c(-0.1, 1.1)) +
   scale_y_continuous(limits=c(-0.05, 1.1), breaks=c(0.0,0.2, 0.4, 0.6, 0.8, 1.0)) +
-  scale_x_continuous(breaks = pretty(freqAll_long$year, n = 8)) +
+  scale_x_continuous(breaks = pretty(freqAll_long$year, n = 18)) +
   #scale_colour_discrete(name ="Haplotype", labels=c("wt1016/wt1534", "wt1016/Cys1534", "Ile1016/wt1534", "Ile1016/Cys1534")) +
   #geom_hline(yintercept = 0) +
 
   ### Add background to represent type of insecticides used
   # Pyrethroids 2002 - 2014
-  geom_rect(data = NULL, aes(xmin = 2001.5, xmax = 2014.5, ymin = -Inf, ymax = Inf), fill="#DDCC77", alpha = 0.005) +
+  geom_rect(data = NULL, aes(xmin = 2001.5, xmax = 2013.5, ymin = -Inf, ymax = Inf), fill="#DDCC77", alpha = 0.005) +
   # No pyrethroids
   geom_rect(data = NULL, aes(xmin = 1999.0, xmax = 2001.5, ymin = -Inf, ymax = Inf), fill="#88CCEE", alpha = 0.005) +
   # # Delatmethrin 2002 - 2006
@@ -46,7 +52,7 @@ kdrHaps <- ggplot(data = freqAll_long[!is.na(freqAll_long$Frequency),], aes(x=ye
   # # Cypermethrin 2014
   # geom_rect(data = NULL, aes(xmin = 2013.5, xmax = 2014.5, ymin = -Inf, ymax = Inf), fill="#E69F00", alpha = 0.01) +
   # No pyrethroids
-  geom_rect(data = NULL, aes(xmin = 2014.5, xmax = 2018.0, ymin = -Inf, ymax = Inf), fill="#88CCEE", alpha = 0.005) +
+  geom_rect(data = NULL, aes(xmin = 2013.5, xmax = 2018.0, ymin = -Inf, ymax = Inf), fill="#88CCEE", alpha = 0.005) +
 
   ### Add text to represent type of insecticides used
   annotate("text", x= 2008.0, y=1.09, label = "Pyrethroids", size = 5, fontface = 2) +
@@ -76,10 +82,10 @@ kdrHaps <- ggplot(data = freqAll_long[!is.na(freqAll_long$Frequency),], aes(x=ye
   annotate("text", x=2011, y=-0.03, label = mc.haps.yr$n[12], fontface = 2, color = "#332288") +
   annotate("text", x=2012, y=-0.03, label = mc.haps.yr$n[13], fontface = 2, color = "#332288") +
   annotate("text", x=2013, y=-0.03, label = mc.haps.yr$n[14], fontface = 2, color = "#332288") +
-  annotate("text", x=2014, y=-0.03, label = mc.haps.yr$n[15], fontface = 2, color = "#332288") +
-  annotate("text", x=2015, y=-0.03, label = mc.haps.yr$n[16], fontface = 2, color = "#332288") +
-  annotate("text", x=2016, y=-0.03, label = mc.haps.yr$n[17], fontface = 2, color = "#332288") +
-  annotate("text", x=2017, y=-0.03, label = mc.haps.yr$n[18], fontface = 2, color = "#332288") +
+  # annotate("text", x=2014, y=-0.03, label = mc.haps.yr$n[15], fontface = 2, color = "#332288") +
+  # annotate("text", x=2015, y=-0.03, label = mc.haps.yr$n[16], fontface = 2, color = "#332288") +
+  # annotate("text", x=2016, y=-0.03, label = mc.haps.yr$n[17], fontface = 2, color = "#332288") +
+  # annotate("text", x=2017, y=-0.03, label = mc.haps.yr$n[18], fontface = 2, color = "#332288") +
   
   ### Add data
   geom_line(aes(colour=Haplotype), size = 2) +
@@ -114,7 +120,8 @@ kdrHaps <- ggplot(data = freqAll_long[!is.na(freqAll_long$Frequency),], aes(x=ye
   theme(legend.title = element_text(size = 14, face = "bold"), legend.text = element_text(size=12)
         , legend.title.align=0.5) 
 
-kdrHaps
+# # Print graph to screen
+# kdrHaps
 
 # Write plot to png
 ggsave(filename = paste0("figures/kdrHaps/kdrHaps_", Sys.Date(), ".png"), width = 11, height = 8, dpi = 600, units = "in", device='png')
