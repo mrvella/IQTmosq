@@ -1,4 +1,4 @@
-# This file takes output from meltcurve analysis folders and concatenates it into four files
+# This file takes output from meltcurve analysis folders and concatenates it into six files
 # Creates on file for each meltcurve locus + replicate combination
 # Started: 6/7/17
 
@@ -8,7 +8,8 @@ library(gdata)
 
 
 # Specify 4 folder names to loop over in setwd() loop
-wd <- c("MeltCurve_1016_rep1", "MeltCurve_1016_rep2", "MeltCurve_1534_rep1", "MeltCurve_1534_rep2")
+wd <- c("MeltCurve_1016_rep1", "MeltCurve_1016_rep2", "MeltCurve_1534_rep1", "MeltCurve_1534_rep2"
+        , "MeltCurve_410_rep1", "MeltCurve_410_rep2")
 
 # Begin setwd() loop
 for (d in 1:length(wd)) {

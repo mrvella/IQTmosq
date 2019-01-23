@@ -1,63 +1,74 @@
 ### Melt Curve Analysis
 ### File Started: 31 May 2017
 
-# 0 ################################################################################
-### Prepare working environment
-
-### clear working environment
-rm(list = ls())
-
-### load libraries
-library(gdata)
-# options() line below prevents R from stalling while loading sqldf library
-options(gsubfn.engine = "R")
-library(sqldf)
-# required for allele frequency calculations
-library(dplyr)
-# required to produce plots
-library(ggplot2)
-
-
-# 1 ################################################################################
-### set working directory
+# Prepare working environment ---------------------------------------------
+# set working directory
 setwd("~/Dropbox/GouldLab/Project_Mosquito/Database")
 
+# clear working environment
+rm(list = ls())
 
-# 2 ################################################################################
-### Loop to concatenate MeltCurve data files
+# Load libraries
+library(gdata)
+options(gsubfn.engine = "R") # prevents R from stalling while loading sqldf library
+library(sqldf)
+library(dplyr) # required for allele frequency calculations
+library(ggplot2) # required to produce plots
+
+
+
+# Concatenate MeltCurve data files ----------------------------------------
+# Source script
 source("R_Scripts/IQTmosq/loop_MeltCurve_catFiles.R")
 # If you recieve the following error -- 
 # "Error in file(file, "rt") : cannot open the connection' 
 # -- make sure all analysis files are available and named properly in MeltCurve folder"
 
-### set working directory back to Database folder
+# set working directory back to Database folder
 setwd("~/Dropbox/GouldLab/Project_Mosquito/Database")
 
-# 3 ################################################################################
-### load isolation log and name it kdrData
-# Note: make sure that IsolationLog_IQT-Mosq.csv file has the date column in the MM-DD-YYYY format
-kdrData <- read.csv("IsolationLog_IQT-Mosq.csv", header = T, sep = ",")
 
-# Convert current date to readable form for R
+
+# Load data -------------------------------------------------------
+# Isolation log contains all samples isolated
+# Note: make sure that IsolationLog_IQT-Mosq.csv file has the date column in the MM-DD-YYYY format
+kdrData <- read.csv("IsolationLog_IQT-Mosq.csv")
+
+# masterdec.csv contains GPS and neighborhood info
+masterdec <- read.csv("../QGIS_Files/Routput/masterdec.csv")
+
+# These files contain genotype information
+merged1016_rep1 <- read.csv("MeltCurve_1016_rep1.csv")
+merged1016_rep2 <- read.csv("MeltCurve_1016_rep2.csv")
+merged1534_rep1 <- read.csv("MeltCurve_1534_rep1.csv")
+merged1534_rep2 <- read.csv("MeltCurve_1534_rep2.csv")
+merged410_rep1 <- read.csv("MeltCurve_410_rep1.csv")
+merged410_rep2 <- read.csv("MeltCurve_410_rep2.csv")
+
+# exptZone contains zone information for 2013 & 2014 experiments
+exptZone <- read.csv("Location_Zone.csv")
+
+
+
+# Prep data ---------------------------------------------------------------
+# Convert Date to readable form for R
 kdrData$newDate <- as.character(as.Date(as.character(kdrData$Date), format = "%m/%d/%Y"))
 # Note: If year starts with 00 after conversion, then go back and save IsolationLog_IQT-Mosq.csv
 # with Date column in the correct format. Weird formating issues happen with .csv files
 
+# Left join masterdec GIS and neighborhood info onto kdrData
+kdrData <- merge(x=kdrData, y = masterdec[, c("X", "Y", "NEIGHBORHO", "LOC_CODE")]
+              , by.x = "Location_Code", by.y = "LOC_CODE" , all.x = TRUE)
 
-# 4 ################################################################################
-### Merge melt curve data with isolation log to create df "kdrData"
 
-# Load merged data for each locus and replicate
-merged1016_rep1 <- read.csv("MeltCurve_1016_rep1.csv", header = T, sep = ",")
-merged1016_rep2 <- read.csv("MeltCurve_1016_rep2.csv", header = T, sep = ",")
-merged1534_rep1 <- read.csv("MeltCurve_1534_rep1.csv", header = T, sep = ",")
-merged1534_rep2 <- read.csv("MeltCurve_1534_rep2.csv", header = T, sep = ",")
-
+# Merge melt curve data with isolation log to create df "kdrData"
 # Rename column Genotype in each df
 colnames(merged1016_rep1)[4] <- "V1016I_rep1"
 colnames(merged1016_rep2)[4] <- "V1016I_rep2"
 colnames(merged1534_rep1)[4] <- "F1534C_rep1"
 colnames(merged1534_rep2)[4] <- "F1534C_rep2"
+colnames(merged410_rep1)[4] <- "V410L_rep1"
+colnames(merged410_rep2)[4] <- "V410L_rep2"
 
 # Left join merged data to kdrData
 kdrData <- merge(x = kdrData, y = merged1016_rep1[, c("mosquito_id", "V1016I_rep1")]
@@ -68,68 +79,65 @@ kdrData <- merge(x = kdrData, y = merged1534_rep1[, c("mosquito_id", "F1534C_rep
                  , by = "mosquito_id", all.x = TRUE)
 kdrData <- merge(x = kdrData, y = merged1534_rep2[, c("mosquito_id", "F1534C_rep2")]
                  , by = "mosquito_id", all.x = TRUE)
+kdrData <- merge(x = kdrData, y = merged410_rep1[, c("mosquito_id", "V410L_rep1")]
+                 , by = "mosquito_id", all.x = TRUE)
+kdrData <- merge(x = kdrData, y = merged410_rep2[, c("mosquito_id", "V410L_rep2")]
+                 , by = "mosquito_id", all.x = TRUE)
 
-# 5 ################################################################################
-### Add columns with verified replicated genotype or put error
+
+# Add columns with verified replicated genotype or put error 
 kdrData$V1016I <- ifelse(kdrData$V1016I_rep1 == kdrData$V1016I_rep2
                        , as.character(kdrData$V1016I_rep1)
                        , "error")
 kdrData$F1534C <- ifelse(kdrData$F1534C_rep1 == kdrData$F1534C_rep2
                          , as.character(kdrData$F1534C_rep1)
                          , "error")
-# head(kdrData)
+kdrData$V410L <- ifelse(kdrData$V410L_rep1 == kdrData$V410L_rep2
+                         , as.character(kdrData$V410L_rep1)
+                         , "error")
 
-# 6 ################################################################################
-### Add column for Zone
-# Load file containing zone information
-exptZone <- read.csv("Location_Zone.csv", header = T, sep = ",")
-# Rename location code to match title in kdrData
-colnames(exptZone)[1] <- "Location_Code"
 
 # Left join Zone information to kdrDate
-kdrData <- merge(x = kdrData, y = exptZone
-                          , by = "Location_Code"
-                          , all.x = TRUE)
+kdrData <- merge(x = kdrData, y = exptZone, by.x = "Location_Code", by.y = "location_code", all.x = TRUE)
 
 
-# 7 ################################################################################
-### Create and save files with missing project_code
+# Create and save files with missing project_code
 # Those files with no Zone (i.e. project code) specified
 noZone <- kdrData[is.na(kdrData$project_code),]
-#write.csv(noZone, "noZone.csv", row.names = FALSE)
+write.csv(noZone, "noZone.csv", row.names = FALSE)
 
-# Those files with no Zone and known location codes
+# Those files with no Zone but with known location codes
 noZoneNoUnknowns <- noZone[noZone$Location_Code != "unknown",]
 write.csv(noZoneNoUnknowns, "noZoneNoUnknowns.csv", row.names = FALSE)
 
-###################################################################################
-### This is the key code for this script
-###################################################################################
-# Remove unknown location codes from kdrData and save file
-# "Unknown" location codes are from mosquitos collected by Steve Stoddard outside of IQT
+####
+# Key Code: Remove unknown location codes from kdrData and save file
+####
+# "Unknown" location codes are typically from mosquitoes collected by Steve Stoddard outside of IQT
 kdrData <- kdrData[kdrData$Location_Code != "unknown", ]
-write.csv(kdrData
-          ,"~/Dropbox/GouldLab/Project_Mosquito/Database/kdrData_all_reduced.csv"
-          , row.names = F)
+write.csv(kdrData,"~/Dropbox/GouldLab/Project_Mosquito/Database/kdrData_all_reduced.csv", row.names = F)
 
 
-# 8 ################################################################################
-### Convert melt curve output to readable genotype and haplotype
+# Convert melt curve output to readable genotype and haplotype
 # Load function to convert melt curve output
 source("R_Scripts/IQTmosq/function_convertMergedMeltCurve.R")
+
 # Run function for each column
 kdrData$V1016I_converted <- convert1016(kdrData)
 kdrData$F1534C_converted <- convert1534(kdrData)
+kdrData$V410L_converted <- convert410(kdrData)
+
+# Create haplotype for loci 1016 and 1534 - 410 is not included here
 kdrData$haplotype <- paste0(kdrData$V1016I_converted, kdrData$F1534C_converted)
 
 ### Save file
 # Write to file
-write.csv(kdrData
-          ,paste0("~/Dropbox/GouldLab/Project_Mosquito/Database/kdrData_reduced_", Sys.Date(), ".csv")
-          , row.names = F)
+write.csv(kdrData, paste0("~/Dropbox/GouldLab/Project_Mosquito/Database/kdrData_reduced_archived/kdrData_reduced_", Sys.Date(), ".csv"), row.names = F)
+write.csv(kdrData, "~/Dropbox/GouldLab/Project_Mosquito/Database/kdrData_reduced.csv", row.names = F)
 
 
-# 9 ################################################################################
+
+# Parse data for allele frequency analysis --------------------------------
 ### Parse data by year and/or month to use for allele frequency analysis
 # Keep only those rows with project code
 
@@ -229,25 +237,16 @@ sep2014b <- sqldf("Select * from buff where newDate between '2014-09-01' and '20
 oct2014b <- sqldf("Select * from buff where newDate between '2014-10-01' and '2014-10-31'")
 
 
-# 10 ################################################################################
-### Function to create dataframe of genotype counts, allele frequency of R, and +/- 95% confidence interval
-### Run function across all years
-### Create a dataframe with output from function
-
-# Load functions
+# Source functions to create dataframe of genotype counts, allele  --------
+# Source functions
 source("R_Scripts/IQTmosq/function_mc.1016.R")
 source("R_Scripts/IQTmosq/function_mc.1534.R")
+source("R_Scripts/IQTmosq/function_mc.410.R")
 source("R_Scripts/IQTmosq/function_mc.haps.R")
 
 
-# 11 ################################################################################
-### Run functions across all years and create dataframe with output
-# Use mosqYears if figure out how to loop the function properly
-# mosqYears <- c(mosq2000, mosq2001, mosq2002, mosq2003, mosq2004, mosq2005
-#                , mosq2006, mosq2007, mosq2008, mosq2009, mosq2010, mosq2011
-#                , mosq2012, mosq2013, mosq2014, mosq2015, mosq2016)
 
-### Run Functions
+# Run functions across all years ------------------------------------------
 # For 1016 locus at all years
 m2000 = mc.1016(mosq2000)
 m2001 = mc.1016(mosq2001)
@@ -288,6 +287,26 @@ s2015 = mc.1534(mosq2015)
 s2016 = mc.1534(mosq2016)
 s2017 = mc.1534(mosq2017)
 
+# For 1534 locus at all years
+n2000 = mc.410(mosq2000)
+n2001 = mc.410(mosq2001)
+n2002 = mc.410(mosq2002)
+n2003 = mc.410(mosq2003)
+n2004 = mc.410(mosq2004)
+n2005 = mc.410(mosq2005)
+n2006 = mc.410(mosq2006)
+n2007 = mc.410(mosq2007)
+n2008 = mc.410(mosq2008)
+n2009 = mc.410(mosq2009)
+n2010 = mc.410(mosq2010)
+n2011 = mc.410(mosq2011)
+n2012 = mc.410(mosq2012)
+n2013 = mc.410(mosq2013)
+n2014 = mc.410(mosq2014)
+n2015 = mc.410(mosq2015)
+n2016 = mc.410(mosq2016)
+n2017 = mc.410(mosq2017)
+
 # For haplotypes at all years
 h2000 = mc.haps(mosq2000)
 h2001 = mc.haps(mosq2001)
@@ -319,6 +338,7 @@ mJul13 <- mc.1016(jul2013)
 mAug13 <- mc.1016(aug2013)
 mSep13 <- mc.1016(sep2013)
 mOct13 <- mc.1016(oct2013)
+
 # For 1016 locus at all months in 2014
 mJan <- mc.1016(jan2014)
 mFeb <- mc.1016(feb2014)
@@ -342,6 +362,7 @@ sJul13 <- mc.1534(jul2013)
 sAug13 <- mc.1534(aug2013)
 sSep13 <- mc.1534(sep2013)
 sOct13 <- mc.1534(oct2013)
+
 # For 1534 locus at all months in 2014
 sJan <- mc.1534(jan2014)
 sFeb <- mc.1534(feb2014)
@@ -365,6 +386,7 @@ tJul13 <- mc.1016(jul2013t)
 tAug13 <- mc.1016(aug2013t)
 tSep13 <- mc.1016(sep2013t)
 tOct13 <- mc.1016(oct2013t)
+
 # For 1016 locus at all months in 2014 - treatment zone
 tJan <- mc.1016(jan2014t)
 tFeb <- mc.1016(feb2014t)
@@ -388,6 +410,7 @@ bJul13 <- mc.1016(jul2013b)
 bAug13 <- mc.1016(aug2013b)
 bSep13 <- mc.1016(sep2013b)
 bOct13 <- mc.1016(oct2013b)
+
 # For 1016 locus at all months in 2014 - buffer zone
 bJan <- mc.1016(jan2014b)
 bFeb <- mc.1016(feb2014b)
@@ -401,7 +424,9 @@ bSep <- mc.1016(sep2014b)
 bOct <- mc.1016(oct2014b)
 
 
-### Create dataframes
+
+
+# Create dataframes -------------------------------------------------------
 # Create list of years included in dataframe
 year <- c(2000:2017)
 # Create list of months included in dataframe - as numeric
@@ -422,6 +447,13 @@ df1534 <- rbind(s2000, s2001, s2002, s2003, s2004, s2005, s2006
                , s2014, s2015, s2016, s2017)
 # Add year ID to rows in df rename
 mc.1534.yr <- cbind(year, df1534)
+
+# For 410 locus
+df410 <- rbind(n2000, n2001, n2002, n2003, n2004, n2005, n2006
+                , n2007, n2008, n2009, n2010, n2011, n2012, n2013
+                , n2014, n2015, n2016, n2017)
+# Add year ID to rows in df rename
+mc.410.yr <- cbind(year, df410)
 
 # For haplotypes
 dfHaps <- rbind(h2000, h2001, h2002, h2003, h2004, h2005, h2006
@@ -469,6 +501,7 @@ mc.1016.b <- cbind(month, dfbuff)
 # ### To view dataframes
 # mc.1016.yr
 # mc.1534.yr
+# mc.410.yr
 # mc.haps.yr
 # mc.1016.mo13
 # mc.1016.mo
@@ -479,11 +512,14 @@ mc.1016.b <- cbind(month, dfbuff)
 # mc.1016.b13
 # mc.1016.b
 
-### To save dataframes required for plots, selection coefficient, and other analyses
+
+# Save dataframes ---------------------------------------------------------
+# These are required for plots, selection coefficient, and other analyses
 write.csv(mosq2014, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mosq2014.csv", row.names = F)
 write.csv(mosq2013, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mosq2013.csv", row.names = F)
 write.csv(mc.1016.yr, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1016.yr_reduced.csv", row.names = F)
 write.csv(mc.1534.yr, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1534.yr_reduced.csv", row.names = F)
+write.csv(mc.410.yr, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.410.yr_reduced.csv", row.names = F)
 write.csv(mc.haps.yr, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.haps.yr_reduced.csv", row.names = F)
 write.csv(mc.1016.mo13, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1016.mo13_reduced.csv", row.names = F)
 write.csv(mc.1016.mo, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1016.mo_reduced.csv", row.names = F)
@@ -495,34 +531,38 @@ write.csv(mc.1016.b13, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito
 write.csv(mc.1016.b, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1016.b_reduced.csv", row.names = F)
 
 
-# 12 ################################################################################
+# Source plots ------------------------------------------------------------
 ### Plot Frequency of Resistance Allele at 1016 locus by zone for year 2013
 # Plot based off of dataframes mc.1016.t13 and mc.1016.b13
 source("R_Scripts/IQTmosq/plot_kdrZones13.R")
-# kdrZones13
+kdrZones13
 
 ### Plot Frequency of Resistance Allele at 1016 locus by zone for year 2014
 # Plot based off of dataframes mc.1016.t and mc.1016.b
-source("R_Scripts/IQTmosq/plot_kdrZones.R")
-# kdrZones
+source("R_Scripts/IQTmosq/plot_kdrZones14.R")
+kdrZones14
 
-
-# 13 ################################################################################
 ### Plot Frequency of Haplotypes across time
 source("R_Scripts/IQTmosq/run_Haplotype_Imputation.R")
-# kdrHaps
+kdrHaps
 
-# 14 ################################################################################
-### Plot Frequency of Resistance Allele at 1016 locus across year 2014
-# Plot based off of dataframe mc.1016.mo
+### Plot Frequency of 3 Loci across time
+source("R_Scripts/IQTmosq/plot_kdr3Loci.R")
+kdr3Loci
 
-source("R_Scripts/IQTmosq/plot_kdrMonths.R")
-kdrMonths
-
-# # 15 ################################################################################
+# Old plots ------------------------------------------------------------
+# ### Plot Frequency of Haplotypes across time with ribbon confidence intervals
+# source("R_Scripts/IQTmosq/plot_kdrHaps_ribbons.R")
+# kdrHaps_ribbons
+#
+# ### Plot Frequency of Resistance Allele at 1016 locus across year 2014
+# # Plot based off of dataframe mc.1016.mo
+# source("R_Scripts/IQTmosq/plot_kdrMonths.R")
+# kdrMonths
+# 
 # ### Plot Frequency of Resistance Alleles at two loci across years
 # # Plot based off of dataframes mc.1016.yr and mc.1534.yr
 # source("R_Scripts/IQTmosq/plot_kdrYears.R")
-# # kdrYears
+# kdrYears
 
 

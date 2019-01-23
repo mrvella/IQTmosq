@@ -14,8 +14,9 @@ setwd("~/Dropbox/GouldLab/Project_Mosquito/Database")
 # Load required libraries
 library(reshape2)
 
-# Load mc.haps.yr file
-mc.haps.yr <- read.csv("mc.haps.yr_reduced.csv")
+# Load mc.haps file
+top.R <- read.csv("mc.haps.top.R.csv")
+
 
 ### Create matrix of haplotype probabilities ------------------------------------------------------------
 genos <- c("SSSS", "SSSR", "SSRR", "SRSS", "SRSR", "SRRR", "RRSS", "RRSR", "RRRR")
@@ -24,13 +25,13 @@ HapProbs <- matrix(data = c(1,0,0,0,0.5,0.5,0,0,0,1,0,0,1,0,0,0,0.33,0.33,0,0.33
        , nrow = 9, ncol = 4, byrow = T, dimnames = list(genos, haps))
 # HapProbs
 
-### Impute haplotype numbers ------------------------------------------------------------
+### Impute haplotype numbers ### top.R ### ----------------------------------
 # 2000
 df <- data.frame()
 # For each year, multiply the genotype number by the haplotype probability
 for(i in 1:9){
-  df_New <- mc.haps.yr[1,i] * HapProbs[i,]
-  yr <- mc.haps.yr$year[1]
+  df_New <- top.R[1,i] * HapProbs[i,]
+  yr <- top.R$year[1]
   df.yr <- c(df_New, yr)
   df <- rbind(df, df.yr)
   names(df) <- c("SS", "SR", "RS", "RR", "Year")
@@ -46,8 +47,8 @@ haps2000 <- df
 df <- data.frame()
 # For each year, multiply the genotype number by the haplotype probability
 for(i in 1:9){
-  df_New <- mc.haps.yr[2,i] * HapProbs[i,]
-  yr <- mc.haps.yr$year[2]
+  df_New <- top.R[2,i] * HapProbs[i,]
+  yr <- top.R$year[2]
   df.yr <- c(df_New, yr)
   df <- rbind(df, df.yr)
   names(df) <- c("SS", "SR", "RS", "RR", "Year")
@@ -63,8 +64,8 @@ haps2001 <- df
 df <- data.frame()
 # For each year, multiply the genotype number by the haplotype probability
 for(i in 1:9){
-  df_New <- mc.haps.yr[3,i] * HapProbs[i,]
-  yr <- mc.haps.yr$year[3]
+  df_New <- top.R[3,i] * HapProbs[i,]
+  yr <- top.R$year[3]
   df.yr <- c(df_New, yr)
   df <- rbind(df, df.yr)
   names(df) <- c("SS", "SR", "RS", "RR", "Year")
@@ -79,8 +80,8 @@ haps2002 <- df
 df <- data.frame()
 # For each year, multiply the genotype number by the haplotype probability
 for(i in 1:9){
-  df_New <- mc.haps.yr[4,i] * HapProbs[i,]
-  yr <- mc.haps.yr$year[4]
+  df_New <- top.R[4,i] * HapProbs[i,]
+  yr <- top.R$year[4]
   df.yr <- c(df_New, yr)
   df <- rbind(df, df.yr)
   names(df) <- c("SS", "SR", "RS", "RR", "Year")
@@ -95,8 +96,8 @@ haps2003 <- df
 df <- data.frame()
 # For each year, multiply the genotype number by the haplotype probability
 for(i in 1:9){
-  df_New <- mc.haps.yr[5,i] * HapProbs[i,]
-  yr <- mc.haps.yr$year[5]
+  df_New <- top.R[5,i] * HapProbs[i,]
+  yr <- top.R$year[5]
   df.yr <- c(df_New, yr)
   df <- rbind(df, df.yr)
   names(df) <- c("SS", "SR", "RS", "RR", "Year")
@@ -112,8 +113,8 @@ haps2004 <- df
 df <- data.frame()
 # For each year, multiply the genotype number by the haplotype probability
 for(i in 1:9){
-  df_New <- mc.haps.yr[6,i] * HapProbs[i,]
-  yr <- mc.haps.yr$year[6]
+  df_New <- top.R[6,i] * HapProbs[i,]
+  yr <- top.R$year[6]
   df.yr <- c(df_New, yr)
   df <- rbind(df, df.yr)
   names(df) <- c("SS", "SR", "RS", "RR", "Year")
@@ -128,8 +129,8 @@ haps2005 <- df
 df <- data.frame()
 # For each year, multiply the genotype number by the haplotype probability
 for(i in 1:9){
-  df_New <- mc.haps.yr[7,i] * HapProbs[i,]
-  yr <- mc.haps.yr$year[7]
+  df_New <- top.R[7,i] * HapProbs[i,]
+  yr <- top.R$year[7]
   df.yr <- c(df_New, yr)
   df <- rbind(df, df.yr)
   names(df) <- c("SS", "SR", "RS", "RR", "Year")
@@ -145,8 +146,8 @@ haps2006 <- df
 df <- data.frame()
 # For each year, multiply the genotype number by the haplotype probability
 for(i in 1:9){
-  df_New <- mc.haps.yr[8,i] * HapProbs[i,]
-  yr <- mc.haps.yr$year[8]
+  df_New <- top.R[8,i] * HapProbs[i,]
+  yr <- top.R$year[8]
   df.yr <- c(df_New, yr)
   df <- rbind(df, df.yr)
   names(df) <- c("SS", "SR", "RS", "RR", "Year")
@@ -162,8 +163,8 @@ haps2007 <- df
 df <- data.frame()
 # For each year, multiply the genotype number by the haplotype probability
 for(i in 1:9){
-  df_New <- mc.haps.yr[9,i] * HapProbs[i,]
-  yr <- mc.haps.yr$year[9]
+  df_New <- top.R[9,i] * HapProbs[i,]
+  yr <- top.R$year[9]
   df.yr <- c(df_New, yr)
   df <- rbind(df, df.yr)
   names(df) <- c("SS", "SR", "RS", "RR", "Year")
@@ -179,8 +180,8 @@ haps2008 <- df
 df <- data.frame()
 # For each year, multiply the genotype number by the haplotype probability
 for(i in 1:9){
-  df_New <- mc.haps.yr[10,i] * HapProbs[i,]
-  yr <- mc.haps.yr$year[10]
+  df_New <- top.R[10,i] * HapProbs[i,]
+  yr <- top.R$year[10]
   df.yr <- c(df_New, yr)
   df <- rbind(df, df.yr)
   names(df) <- c("SS", "SR", "RS", "RR", "Year")
@@ -195,8 +196,8 @@ haps2009 <- df
 df <- data.frame()
 # For each year, multiply the genotype number by the haplotype probability
 for(i in 1:9){
-  df_New <- mc.haps.yr[11,i] * HapProbs[i,]
-  yr <- mc.haps.yr$year[11]
+  df_New <- top.R[11,i] * HapProbs[i,]
+  yr <- top.R$year[11]
   df.yr <- c(df_New, yr)
   df <- rbind(df, df.yr)
   names(df) <- c("SS", "SR", "RS", "RR", "Year")
@@ -212,8 +213,8 @@ haps2010 <- df
 df <- data.frame()
 # For each year, multiply the genotype number by the haplotype probability
 for(i in 1:9){
-  df_New <- mc.haps.yr[12,i] * HapProbs[i,]
-  yr <- mc.haps.yr$year[12]
+  df_New <- top.R[12,i] * HapProbs[i,]
+  yr <- top.R$year[12]
   df.yr <- c(df_New, yr)
   df <- rbind(df, df.yr)
   names(df) <- c("SS", "SR", "RS", "RR", "Year")
@@ -228,8 +229,8 @@ haps2011 <- df
 df <- data.frame()
 # For each year, multiply the genotype number by the haplotype probability
 for(i in 1:9){
-  df_New <- mc.haps.yr[13,i] * HapProbs[i,]
-  yr <- mc.haps.yr$year[13]
+  df_New <- top.R[13,i] * HapProbs[i,]
+  yr <- top.R$year[13]
   df.yr <- c(df_New, yr)
   df <- rbind(df, df.yr)
   names(df) <- c("SS", "SR", "RS", "RR", "Year")
@@ -244,8 +245,8 @@ haps2012 <- df
 df <- data.frame()
 # For each year, multiply the genotype number by the haplotype probability
 for(i in 1:9){
-  df_New <- mc.haps.yr[14,i] * HapProbs[i,]
-  yr <- mc.haps.yr$year[14]
+  df_New <- top.R[14,i] * HapProbs[i,]
+  yr <- top.R$year[14]
   df.yr <- c(df_New, yr)
   df <- rbind(df, df.yr)
   names(df) <- c("SS", "SR", "RS", "RR", "Year")
@@ -260,8 +261,8 @@ haps2013 <- df
 df <- data.frame()
 # For each year, multiply the genotype number by the haplotype probability
 for(i in 1:9){
-  df_New <- mc.haps.yr[15,i] * HapProbs[i,]
-  yr <- mc.haps.yr$year[15]
+  df_New <- top.R[15,i] * HapProbs[i,]
+  yr <- top.R$year[15]
   df.yr <- c(df_New, yr)
   df <- rbind(df, df.yr)
   names(df) <- c("SS", "SR", "RS", "RR", "Year")
@@ -277,8 +278,8 @@ haps2014 <- df
 df <- data.frame()
 # For each year, multiply the genotype number by the haplotype probability
 for(i in 1:9){
-  df_New <- mc.haps.yr[16,i] * HapProbs[i,]
-  yr <- mc.haps.yr$year[16]
+  df_New <- top.R[16,i] * HapProbs[i,]
+  yr <- top.R$year[16]
   df.yr <- c(df_New, yr)
   df <- rbind(df, df.yr)
   names(df) <- c("SS", "SR", "RS", "RR", "Year")
@@ -294,8 +295,8 @@ haps2015 <- df
 df <- data.frame()
 # For each year, multiply the genotype number by the haplotype probability
 for(i in 1:9){
-  df_New <- mc.haps.yr[17,i] * HapProbs[i,]
-  yr <- mc.haps.yr$year[17]
+  df_New <- top.R[17,i] * HapProbs[i,]
+  yr <- top.R$year[17]
   df.yr <- c(df_New, yr)
   df <- rbind(df, df.yr)
   names(df) <- c("SS", "SR", "RS", "RR", "Year")
@@ -310,8 +311,8 @@ haps2016 <- df
 df <- data.frame()
 # For each year, multiply the genotype number by the haplotype probability
 for(i in 1:9){
-  df_New <- mc.haps.yr[18,i] * HapProbs[i,]
-  yr <- mc.haps.yr$year[18]
+  df_New <- top.R[18,i] * HapProbs[i,]
+  yr <- top.R$year[18]
   df.yr <- c(df_New, yr)
   df <- rbind(df, df.yr)
   names(df) <- c("SS", "SR", "RS", "RR", "Year")
@@ -333,24 +334,24 @@ row.names(sumAll) <- (c("2000", "2001", "2002", "2003", "2004", "2005", "2006", 
 
 
 ### Get the frequency of haps for each year ------------------------------------------------------------
-freq2000 <- sum2000/mc.haps.yr$n[1]
-freq2001 <- sum2001/mc.haps.yr$n[2]
-freq2002 <- sum2002/mc.haps.yr$n[3]
-freq2003 <- sum2003/mc.haps.yr$n[4]
-freq2004 <- sum2004/mc.haps.yr$n[5]
-freq2005 <- sum2005/mc.haps.yr$n[6]
-freq2006 <- sum2006/mc.haps.yr$n[7]
-freq2007 <- sum2007/mc.haps.yr$n[8]
-freq2008 <- sum2008/mc.haps.yr$n[9]
-freq2009 <- sum2009/mc.haps.yr$n[10]
-freq2010 <- sum2010/mc.haps.yr$n[11]
-freq2011 <- sum2011/mc.haps.yr$n[12]
-freq2012 <- sum2012/mc.haps.yr$n[13]
-freq2013 <- sum2013/mc.haps.yr$n[14]
-freq2014 <- sum2014/mc.haps.yr$n[15]
-freq2015 <- sum2015/mc.haps.yr$n[16]
-freq2016 <- sum2016/mc.haps.yr$n[17]
-freq2017 <- sum2017/mc.haps.yr$n[18]
+freq2000 <- sum2000/top.R$n[1]
+freq2001 <- sum2001/top.R$n[2]
+freq2002 <- sum2002/top.R$n[3]
+freq2003 <- sum2003/top.R$n[4]
+freq2004 <- sum2004/top.R$n[5]
+freq2005 <- sum2005/top.R$n[6]
+freq2006 <- sum2006/top.R$n[7]
+freq2007 <- sum2007/top.R$n[8]
+freq2008 <- sum2008/top.R$n[9]
+freq2009 <- sum2009/top.R$n[10]
+freq2010 <- sum2010/top.R$n[11]
+freq2011 <- sum2011/top.R$n[12]
+freq2012 <- sum2012/top.R$n[13]
+freq2013 <- sum2013/top.R$n[14]
+freq2014 <- sum2014/top.R$n[15]
+freq2015 <- sum2015/top.R$n[16]
+freq2016 <- sum2016/top.R$n[17]
+freq2017 <- sum2017/top.R$n[18]
 
 ### Create table for frequency of haps for each year ------------------------------------------------------------
 freqAll <- rbind(freq2000, freq2001, freq2002, freq2003, freq2004, freq2005, freq2006, freq2007
@@ -362,14 +363,16 @@ freqAll <- as.data.frame(freqAll)
 year <- 2000:2017
 freqAll <- cbind(freqAll, year)
 # freqAll
+
+
 # Save df to .csv file
-write.csv(freqAll, "freqAll.csv", row.names = FALSE)
+write.csv(freqAll, "freqAll_top.R.csv", row.names = FALSE)
 
 ### Calculate 95% Confidence Interval (not for ribbon CIs) ------------------------------------------------------------
 ## for column 1: SS
 df <- data.frame()
 for(i in 1:18){
-  ci = 1.96 * (sqrt((freqAll[i,1]*(1-freqAll[i,1]))/(2*mc.haps.yr$n[i])))
+  ci = 1.96 * (sqrt((freqAll[i,1]*(1-freqAll[i,1]))/(2*top.R$n[i])))
   df = rbind(df, ci)
 }
 colnames(df) <- "CI_95"
@@ -379,7 +382,7 @@ CI_95.SS <- df
 ## for column 2: SR
 df <- data.frame()
 for(i in 1:18){
-  ci = 1.96 * (sqrt((freqAll[i,2]*(1-freqAll[i,2]))/(2*mc.haps.yr$n[i])))
+  ci = 1.96 * (sqrt((freqAll[i,2]*(1-freqAll[i,2]))/(2*top.R$n[i])))
   df = rbind(df, ci)
 }
 colnames(df) <- "CI_95"
@@ -389,7 +392,7 @@ CI_95.SR <- df
 ## for column 3: RS
 df <- data.frame()
 for(i in 1:18){
-  ci = 1.96 * (sqrt((freqAll[i,3]*(1-freqAll[i,3]))/(2*mc.haps.yr$n[i])))
+  ci = 1.96 * (sqrt((freqAll[i,3]*(1-freqAll[i,3]))/(2*top.R$n[i])))
   df = rbind(df, ci)
 }
 colnames(df) <- "CI_95"
@@ -399,7 +402,7 @@ CI_95.RS <- df
 ## for column 4: RR
 df <- data.frame()
 for(i in 1:18){
-  ci = 1.96 * (sqrt((freqAll[i,4]*(1-freqAll[i,4]))/(2*mc.haps.yr$n[i])))
+  ci = 1.96 * (sqrt((freqAll[i,4]*(1-freqAll[i,4]))/(2*top.R$n[i])))
   df = rbind(df, ci)
 }
 colnames(df) <- "CI_95"
@@ -413,7 +416,7 @@ CI_95 <- rbind(CI_95.SS, CI_95.SR, CI_95.RS, CI_95.RR)
 ### Converting from wide to long format ------------------------------------------------------------
 freqAll_long <- melt(freqAll, id.vars="year", variable.name = "Haplotype", value.name = "Frequency")
 freqAll_long <- cbind(freqAll_long, CI_95)
-write.csv(freqAll_long, "freqAll_long.csv", row.names = FALSE)
+write.csv(freqAll_long, "freqAll_long_top.R.csv", row.names = FALSE)
 
 # Subset data based on haplotype
 freqSS <- freqAll_long[freqAll_long$Haplotype=="SS", ]
@@ -422,18 +425,19 @@ freqRS <- freqAll_long[freqAll_long$Haplotype=="RS", ]
 freqRR <- freqAll_long[freqAll_long$Haplotype=="RR", ]
 
 ### Plot graph ------------------------------------------------------------
-source("R_Scripts/IQTmosq/plot_kdrHaps.R")
+# create vector containing n for each year
+samp.size <- as.numeric(top.R$n)
+source("./R_Scripts/IQTmosq/neighborhoodAnalysis/plot_kdrNeighborhoods.R")
+
+# Add subtitle
+kdrHaps <- kdrHaps +
+  labs(subtitle = "North East")
+
 # View plot
 kdrHaps
 
-# # Write plot to pdf
-# pdf(file = paste("figures/kdrHaps/kdrHaps_", Sys.Date(), ".pdf", sep = ""), 11, 8.5)
-# print(kdrHaps)
-# dev.off()
-
 # Write plot to png
-ggsave(filename = paste0("figures/kdrHaps/kdrHaps_bars/kdrHaps_", Sys.Date(), ".png"), width = 11, height = 8, dpi = 600, units = "in", device='png')
-
+ggsave(filename = paste0("/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/figures/kdrHaps/kdrNeighborhoods_bars/top.R_bars_", Sys.Date(), ".png"), width = 11, height = 8, dpi = 600, units = "in", device='png')
 
 
 

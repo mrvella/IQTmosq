@@ -1,4 +1,4 @@
-# Selection Foefficient Analysis
+# Selection Coefficient Analysis
 # Started: 7/31/17
 # Updated: 8/1/17
 

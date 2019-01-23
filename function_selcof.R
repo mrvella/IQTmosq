@@ -1,4 +1,5 @@
 # Create function to calculate selection coefficient
+# Based off of code shared by Megan Fritz
 # Created on: 7/25/17
 # Last edited on: 7/25/17
 

@@ -11,13 +11,14 @@
 # For 1534 Locus
 # Apply to each year 
 
-objectName <- kdrData
-unique(objectName$haplotype)
+# objectName <- top2000
+# unique(objectName$haplotype)
 
 mc.haps <- function(objectName){
   # Remove rows with errors and NAs
   objectName <- objectName[!(grepl("*error*", objectName$haplotype)), ]
   objectName <- objectName[!(grepl("*NA*", objectName$haplotype)), ]
+  objectName <- objectName[!is.na(objectName$haplotype),]
   
   # Count genotypes per locus per year
   countHaps <- sqldf("select haplotype, count (haplotype) as countGenos from objectName group by haplotype order by countGenos")
@@ -86,10 +87,10 @@ mc.haps <- function(objectName){
 
 # ### Run this code for testing output and creating larger dataframe
 # #library(sqldf)
-# tmp_Result0 = mc.1534.yr(mosq2000)
+# tmp_Result0 = mc.haps(top2000)
 # print(tmp_Result0)
 # 
-# tmp_Result1 = mc.1534.yr(mosq2001)
+# tmp_Result1 = mc.haps(top2001)
 # print(tmp_Result1)
 # 
 # # Create data frame from all runs of function
@@ -98,5 +99,5 @@ mc.haps <- function(objectName){
 # year <- c(2000:2001)
 # # Add year ID to rows in dfNew
 # cbind(year, dfNew)
-
+# 
 

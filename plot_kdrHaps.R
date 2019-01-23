@@ -4,14 +4,18 @@
 library(ggplot2)
 library(RColorBrewer)
 
-# Create custom color palette
-myColors <- c("#117733", "#332288", "#CC6677", "#882255")
-names(myColors) <- levels(freqAll_long$Haplotype)
-colScale <- scale_colour_manual(name = "Haplotype",values = myColors)
+# Load data for plotting
+freqAll_long <- read.csv("freqAll_long.csv")
 
 # Load mc.1534.yr and mc.1016.yr for selection coefficient annotation
 mc.1534.yr <- read.csv("mc.1534.yr_withSelCoeff.csv")
 mc.1016.yr <- read.csv("mc.1016.yr_withSelCoeff.csv")
+mc.haps.yr <- read.csv("mc.haps.yr_reduced.csv")
+
+# Create custom color palette
+myColors <- c("#117733", "#332288", "#CC6677", "#882255")
+names(myColors) <- levels(freqAll_long$Haplotype)
+colScale <- scale_colour_manual(name = "Haplotype",values = myColors)
 
 ##########################
 # Key code for this script
@@ -36,33 +40,33 @@ kdrHaps <- ggplot(data = freqAll_long[!is.na(freqAll_long$Frequency),], aes(x=ye
 
   ### Add background to represent type of insecticides used
   # Pyrethroids 2002 - 2014
-  geom_rect(data = NULL, aes(xmin = 2001.5, xmax = 2013.5, ymin = -Inf, ymax = Inf), fill="#DDCC77", alpha = 0.005) +
+  geom_rect(data = NULL, aes(xmin = 2001.5, xmax = 2014.5, ymin = -Inf, ymax = Inf), fill="#DDCC77", alpha = 0.005) +
   # No pyrethroids
   geom_rect(data = NULL, aes(xmin = 1999.0, xmax = 2001.5, ymin = -Inf, ymax = Inf), fill="#88CCEE", alpha = 0.005) +
-  # # Delatmethrin 2002 - 2006
-  # geom_rect(data = NULL, aes(xmin = 2001.5, xmax = 2006.0, ymin = -Inf, ymax = Inf), fill="#F0E442", alpha = 0.01) +
-  # # Cypermethrin 2006 - 2008
-  # geom_rect(data = NULL, aes(xmin = 2006.0, xmax = 2008.5, ymin = -Inf, ymax = Inf), fill="#E69F00", alpha = 0.01) +
-  # # a-Cypermethrin 2008 - 2011
-  # geom_rect(data = NULL, aes(xmin = 2008.5, xmax = 2011.5, ymin = -Inf, ymax = Inf), fill="#D55E00", alpha = 0.005) +
-  # # Cypermethrin & a-Cypermethrin 2012
-  # geom_rect(data = NULL, aes(xmin = 2011.5, xmax = 2012.5, ymin = -Inf, ymax = Inf), fill="turquoise", alpha = 0.005) +
-  # # Lambda & Alpha & Cyper & Alpha+pyriprox in 2013
-  # geom_rect(data = NULL, aes(xmin = 2012.5, xmax = 2013.5, ymin = -Inf, ymax = Inf), fill="turquoise", alpha = 0.005) +
-  # # Cypermethrin 2014
-  # geom_rect(data = NULL, aes(xmin = 2013.5, xmax = 2014.5, ymin = -Inf, ymax = Inf), fill="#E69F00", alpha = 0.01) +
+  # Delatmethrin 2002 - 2006
+  geom_rect(data = NULL, aes(xmin = 2001.5, xmax = 2006.0, ymin = -Inf, ymax = Inf), fill="#F0E442", alpha = 0.01) +
+  # Cypermethrin 2006 - 2008
+  geom_rect(data = NULL, aes(xmin = 2006.0, xmax = 2008.5, ymin = -Inf, ymax = Inf), fill="#E69F00", alpha = 0.01) +
+  # a-Cypermethrin 2008 - 2011
+  geom_rect(data = NULL, aes(xmin = 2008.5, xmax = 2011.5, ymin = -Inf, ymax = Inf), fill="#D55E00", alpha = 0.005) +
+  # Cypermethrin & a-Cypermethrin 2012
+  geom_rect(data = NULL, aes(xmin = 2011.5, xmax = 2012.5, ymin = -Inf, ymax = Inf), fill="turquoise", alpha = 0.005) +
+  # Lambda & Alpha & Cyper & Alpha+pyriprox in 2013
+  geom_rect(data = NULL, aes(xmin = 2012.5, xmax = 2013.5, ymin = -Inf, ymax = Inf), fill="turquoise", alpha = 0.005) +
+  # Cypermethrin 2014
+  geom_rect(data = NULL, aes(xmin = 2013.5, xmax = 2014.5, ymin = -Inf, ymax = Inf), fill="#E69F00", alpha = 0.01) +
   # No pyrethroids
-  geom_rect(data = NULL, aes(xmin = 2013.5, xmax = 2018.0, ymin = -Inf, ymax = Inf), fill="#88CCEE", alpha = 0.005) +
+  geom_rect(data = NULL, aes(xmin = 2014.5, xmax = 2018.0, ymin = -Inf, ymax = Inf), fill="#88CCEE", alpha = 0.005) +
 
   ### Add text to represent type of insecticides used
   annotate("text", x= 2008.0, y=1.09, label = "Pyrethroids", size = 5, fontface = 2) +
   annotate("text", x=2000.25, y=1.09, label = "No \n Pyrethroids", size = 5, fontface = 2) +
-  # annotate("text", x=2003.75, y=-0.09, label= "Deltamethrin", size = 4) +
-  # annotate("text", x=2007.25, y=-0.09, label= "Cypermethrin", size = 4) +
-  # annotate("text", x=2010, y=-0.09, label= "alpha-Cypermethrin", size = 4) +
-  # #annotate("text", x=2012, y=-0.05, label= "a- & Cyper- \n methrin", size = 4) +
-  # annotate("text", x=2012.5, y=-0.09, label= "Multiple", size = 4) +
-  # annotate("text", x=2014.0, y=-0.09, label = "Cyper- \n methrin", size = 4) +
+  annotate("text", x=2003.75, y=1.05, label= "Deltamethrin", size = 4) +
+  annotate("text", x=2007.25, y=1.05, label= "Cypermethrin", size = 4) +
+  annotate("text", x=2010, y=1.05, label= expression(paste(alpha, "-cypermethrin")), size = 4) +
+  annotate("text", x=2012.5, y=1.05, label= expression(paste(alpha, "-cypermethrin")), size = 4) +
+  annotate("text", x=2012.5, y=1, label= "& \n Cypermethrin", size = 4) +
+  annotate("text", x=2014.0, y=1.05, label = "Cyper- \n methrin", size = 4) +
   annotate("text", x=2016.0, y=1.09, label = "No \n Pyrethroids", size = 5, fontface = 2) +
   
   
@@ -82,10 +86,10 @@ kdrHaps <- ggplot(data = freqAll_long[!is.na(freqAll_long$Frequency),], aes(x=ye
   annotate("text", x=2011, y=-0.03, label = mc.haps.yr$n[12], fontface = 2, color = "#332288") +
   annotate("text", x=2012, y=-0.03, label = mc.haps.yr$n[13], fontface = 2, color = "#332288") +
   annotate("text", x=2013, y=-0.03, label = mc.haps.yr$n[14], fontface = 2, color = "#332288") +
-  # annotate("text", x=2014, y=-0.03, label = mc.haps.yr$n[15], fontface = 2, color = "#332288") +
-  # annotate("text", x=2015, y=-0.03, label = mc.haps.yr$n[16], fontface = 2, color = "#332288") +
-  # annotate("text", x=2016, y=-0.03, label = mc.haps.yr$n[17], fontface = 2, color = "#332288") +
-  # annotate("text", x=2017, y=-0.03, label = mc.haps.yr$n[18], fontface = 2, color = "#332288") +
+  annotate("text", x=2014, y=-0.03, label = mc.haps.yr$n[15], fontface = 2, color = "#332288") +
+  annotate("text", x=2015, y=-0.03, label = mc.haps.yr$n[16], fontface = 2, color = "#332288") +
+  annotate("text", x=2016, y=-0.03, label = mc.haps.yr$n[17], fontface = 2, color = "#332288") +
+  annotate("text", x=2017, y=-0.03, label = mc.haps.yr$n[18], fontface = 2, color = "#332288") +
   
   ### Add data
   geom_line(aes(colour=Haplotype), size = 2) +
@@ -100,17 +104,18 @@ kdrHaps <- ggplot(data = freqAll_long[!is.na(freqAll_long$Frequency),], aes(x=ye
   # ### Add selection coefficient to select years
   # annotate("text", x=2001.0, y = 0.08, label = round(mc.1534.yr$Dom.Sel.Coef.for.q[2], digits = 2), color = "#332288", fontface = 2, size = 7) +
   # annotate("text", x=2001.85, y = 0.28, label = round(mc.1534.yr$Dom.Sel.Coef.for.q[3], digits = 2), color = "#332288", fontface = 2, size = 7) +
-  # annotate("text", x=2002.8, y = 0.6, label = round(mc.1534.yr$Dom.Sel.Coef.for.q[4], digits = 2), color = "#332288", fontface = 2, size = 7) +
-  # annotate("text", x=2003.8, y = 0.85, label = round(mc.1534.yr$Dom.Sel.Coef.for.q[5], digits = 2), color = "#332288", fontface = 2, size = 7) +
+  # annotate("text", x=2002.8, y = 0.65, label = round(mc.1534.yr$Dom.Sel.Coef.for.q[4], digits = 2), color = "#332288", fontface = 2, size = 7) +
+  # annotate("text", x=2003.8, y = 0.9, label = round(mc.1534.yr$Dom.Sel.Coef.for.q[5], digits = 2), color = "#332288", fontface = 2, size = 7) +
   # 
-  # annotate("text", x=2009.75, y = 0.14, label = round(mc.1016.yr$Dom.Sel.Coef.for.q[11], digits = 2), color = "#882255", fontface = 2, size = 7) +
-  # annotate("text", x=2010.72, y = 0.3, label = round(mc.1016.yr$Dom.Sel.Coef.for.q[12], digits = 2), color = "#882255", fontface = 2, size = 7) +
-  # annotate("text", x=2011.75, y = 0.47, label = round(mc.1016.yr$Dom.Sel.Coef.for.q[13], digits = 2), color = "#882255", fontface = 2, size = 7) +
-  # annotate("text", x=2012.65, y = 0.65, label = round(mc.1016.yr$Dom.Sel.Coef.for.q[14], digits = 2), color = "#882255", fontface = 2, size = 7) +
+  # annotate("text", x=2009.5, y = 0.06, label = round(mc.1016.yr$Dom.Sel.Coef.for.q[10], digits = 2), color = "#882255", fontface = 2, size = 7) +
+  # annotate("text", x=2010.3, y = 0.11, label = round(mc.1016.yr$Dom.Sel.Coef.for.q[11], digits = 2), color = "#882255", fontface = 2, size = 7) +
+  # annotate("text", x=2010.9, y = 0.2, label = round(mc.1016.yr$Dom.Sel.Coef.for.q[12], digits = 2), color = "#882255", fontface = 2, size = 7) +
+  # annotate("text", x=2011.75, y = 0.4, label = round(mc.1016.yr$Dom.Sel.Coef.for.q[13], digits = 2), color = "#882255", fontface = 2, size = 7) +
+  # annotate("text", x=2012.70, y = 0.65, label = round(mc.1016.yr$Dom.Sel.Coef.for.q[14], digits = 2), color = "#882255", fontface = 2, size = 7) +
   # # annotate("text", x=2014.62, y = 0.76, label = round(mc.1016.yr$Dom.Sel.Coef.for.q[15], digits = 2), color = "#882255", fontface = 2, size = 4) +
   # # annotate("text", x=2015.65, y = 0.7, label = round(mc.1016.yr$Dom.Sel.Coef.for.q[16], digits = 2), color = "#882255", fontface = 2, size = 4) +
   # # annotate("text", x=2016.5, y = 0.68, label = round(mc.1016.yr$Dom.Sel.Coef.for.q[17], digits = 2), color = "#882255", fontface = 2, size = 4) +
-  
+
   
   theme(plot.subtitle=element_text(size=18, hjust=0.5, face="italic")
         , axis.title=element_text(size=14,face="bold")
@@ -120,12 +125,12 @@ kdrHaps <- ggplot(data = freqAll_long[!is.na(freqAll_long$Frequency),], aes(x=ye
   theme(legend.title = element_text(size = 14, face = "bold"), legend.text = element_text(size=12)
         , legend.title.align=0.5) 
 
-# # Print graph to screen
-# kdrHaps
+# Print graph to screen
+kdrHaps
 
-# Write plot to png
-ggsave(filename = paste0("figures/kdrHaps/kdrHaps_", Sys.Date(), ".png"), width = 11, height = 8, dpi = 600, units = "in", device='png')
-
+# # Write plot to png
+# ggsave(filename = paste0("figures/kdrHaps/kdrHaps_bars/kdrHaps_", Sys.Date(), ".png"), width = 11, height = 8, dpi = 600, units = "in", device='png')
+# 
 
 # # Source function to move x-axis with labels
 # source("R_Scripts/function_moveXaxis.R")
