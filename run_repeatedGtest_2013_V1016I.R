@@ -111,7 +111,7 @@ Data.matrix = as.matrix(mc.1016.2013[c("R", "S")])
 Data.matrix                                     
 
 # Heterogeneity
-G.test(Data.matrix)                 
+G.test(Data.matrix) # Report this value            
 
 ############################################################
 # Pooled G-test

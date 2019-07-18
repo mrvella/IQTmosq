@@ -14,7 +14,7 @@ mc.haps.yr <- read.csv("mc.haps.yr_reduced.csv")
 
 # Create custom color palette
 myColors <- c("#117733", "#332288", "#CC6677", "#882255")
-names(myColors) <- levels(freqAll_long$Haplotype)
+names(myColors) <- rev(levels(freqAll_long$Haplotype))
 colScale <- scale_colour_manual(name = "Haplotype",values = myColors)
 
 ##########################
@@ -59,15 +59,17 @@ kdrHaps <- ggplot(data = freqAll_long[!is.na(freqAll_long$Frequency),], aes(x=ye
   geom_rect(data = NULL, aes(xmin = 2014.5, xmax = 2018.0, ymin = -Inf, ymax = Inf), fill="#88CCEE", alpha = 0.005) +
 
   ### Add text to represent type of insecticides used
-  annotate("text", x= 2008.0, y=1.09, label = "Pyrethroids", size = 5, fontface = 2) +
-  annotate("text", x=2000.25, y=1.09, label = "No \n Pyrethroids", size = 5, fontface = 2) +
-  annotate("text", x=2003.75, y=1.05, label= "Deltamethrin", size = 4) +
-  annotate("text", x=2007.25, y=1.05, label= "Cypermethrin", size = 4) +
-  annotate("text", x=2010, y=1.05, label= expression(paste(alpha, "-cypermethrin")), size = 4) +
-  annotate("text", x=2012.5, y=1.05, label= expression(paste(alpha, "-cypermethrin")), size = 4) +
-  annotate("text", x=2012.5, y=1, label= "& \n Cypermethrin", size = 4) +
-  annotate("text", x=2014.0, y=1.05, label = "Cyper- \n methrin", size = 4) +
-  annotate("text", x=2016.0, y=1.09, label = "No \n Pyrethroids", size = 5, fontface = 2) +
+  annotate("text", x= 2008.0, y=1.1, label = "Pyrethroids", size = 5, fontface = 2) +
+  annotate("text", x=2000.25, y=1.1, label = "No \n Pyrethroids", size = 5, fontface = 2) +
+  annotate("text", x=2003.75, y=1.05, label= "Delta", size = 4) +
+  annotate("text", x=2007.25, y=1.05, label= "Cyper", size = 4) +
+  # annotate("text", x=2010, y=1.05, label= expression(alpha), size = 4) +
+  annotate("text", x=2010, y=1.05, label= "Alpha", size = 4) +
+  # annotate("text", x=2012.5, y=1.05, label= expression(alpha), size = 4) +
+  annotate("text", x=2012.5, y=1.05, label= "Alpha & \n Cyper", size = 4) +
+  # annotate("text", x=2012.5, y=1, label= "& \n Cyper", size = 4) +
+  annotate("text", x=2014.0, y=1.05, label = "Cyper", size = 4) +
+  annotate("text", x=2016.0, y=1.1, label = "No \n Pyrethroids", size = 5, fontface = 2) +
   
   
   ### Add n to each year
@@ -130,7 +132,7 @@ kdrHaps
 
 # # Write plot to png
 # ggsave(filename = paste0("figures/kdrHaps/kdrHaps_bars/kdrHaps_", Sys.Date(), ".png"), width = 11, height = 8, dpi = 600, units = "in", device='png')
-# 
+
 
 # # Source function to move x-axis with labels
 # source("R_Scripts/function_moveXaxis.R")

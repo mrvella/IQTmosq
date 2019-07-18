@@ -35,6 +35,7 @@ kdrZones14 <- ggplot(mc.1016.t, aes(x=month, y=freqR)) +
                      , labels = c("Spray Zone", "Buffer Zone")
                      , breaks=c("Treatment","Buffer")) +
   #Add yellow background to represent spray periods
+     # experimental: 4/28/14 - 6/2/14
   geom_rect(data = NULL, aes(xmin = 1.95, xmax = 2.05, ymin = -Inf, ymax = Inf), fill="yellow", alpha = 0.05) +
   annotate("text", x=2, y=1.0, label= "City Wide", size = 5) +
   geom_rect(data = NULL, aes(xmin = 4.6, xmax = 5.4, ymin = -Inf, ymax = Inf), fill="yellow", alpha = 0.05) +

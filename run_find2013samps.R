@@ -7,16 +7,20 @@ rm(list=ls())
 setwd("/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database")
 
 # load data
+# 2013 samples that have concentrations measured
 concs <- read.csv("2013samps_withConcentrations.csv")
-head(concs)
 # masterdec.csv contains GPS and neighborhood info
 gps <- read.csv("../QGIS_Files/Routput/masterdec.csv")
-head(gps)
+# location_zone.csv has zone information for each house
+zone <- read.csv("Location_Zone.csv")
+
 
 # left join gps onto df
 df <- merge(x = concs, y = gps[, c("X", "Y", "NEIGHBORHO", "LOC_CODE")]
             , by.x = "location_code", by.y = "LOC_CODE", all.x = TRUE)
-head(df)
+
+# left join zone onto df
+df <- merge(x = df, y = zone, all.x = TRUE)
 
 # order df by decreasing concentration
 df <- df[order(df$conc, decreasing=TRUE),]
