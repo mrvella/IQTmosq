@@ -92,6 +92,7 @@ for(i in 1:(length(mc.1016.yr$q.1 - 1))){
 }
 # View df to verify changes
 mc.1016.yr
+mc.1016.yr[14,c(1:9,11,12)]
 
 # Run functions
 # This is the function to calculate selection coefficient assuming partial dominance of p and selection for p

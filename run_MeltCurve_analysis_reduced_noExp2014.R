@@ -1,4 +1,4 @@
-### Melt Curve Analysis
+### Melt Curve Analysis - without 2014 experimental data
 ### File Started: 31 May 2017
 
 # Prepare working environment ---------------------------------------------
@@ -212,7 +212,10 @@ sep2014t <- sqldf("Select * from trt where newDate between '2014-09-01' and '201
 oct2014t <- sqldf("Select * from trt where newDate between '2014-10-01' and '2014-10-31'")
 
 # Select all from buffer zone
-buff <- sqldf("Select * from kdrData where project_code is 'buffer'")
+# buff <- sqldf("Select * from kdrData where project_code is 'buffer'")
+buff <- sqldf("Select * from kdrData where project_code is not 'treatment'")
+buff <- buff[!is.na(buff$project_code),]
+
 # Select based on 2013 month from buffer zone
 jan2013b <- sqldf("Select * from buff where newDate between '2013-01-01' and '2013-01-31'")
 feb2013b <- sqldf("Select * from buff where newDate between '2013-02-01' and '2013-02-31'")
@@ -515,41 +518,41 @@ mc.1016.b <- cbind(month, dfbuff)
 
 # Save dataframes ---------------------------------------------------------
 # These are required for plots, selection coefficient, and other analyses
-write.csv(mosq2014, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mosq2014.csv", row.names = F)
-write.csv(mosq2013, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mosq2013.csv", row.names = F)
-write.csv(mc.1016.yr, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1016.yr_reduced.csv", row.names = F)
-write.csv(mc.1534.yr, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1534.yr_reduced.csv", row.names = F)
-write.csv(mc.410.yr, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.410.yr_reduced.csv", row.names = F)
-write.csv(mc.haps.yr, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.haps.yr_reduced.csv", row.names = F)
-write.csv(mc.1016.mo13, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1016.mo13_reduced.csv", row.names = F)
-write.csv(mc.1016.mo, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1016.mo_reduced.csv", row.names = F)
-write.csv(mc.1534.mo13, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1534.mo13_reduced.csv", row.names = F)
-write.csv(mc.1534.mo, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1534.mo_reduced.csv", row.names = F)
-write.csv(mc.1016.t13, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1016.t13_reduced.csv", row.names = F)
-write.csv(mc.1016.t, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1016.t_reduced.csv", row.names = F)
-write.csv(mc.1016.b13, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1016.b13_reduced.csv", row.names = F)
-write.csv(mc.1016.b, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1016.b_reduced.csv", row.names = F)
+# write.csv(mosq2014, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mosq2014.csv", row.names = F)
+# write.csv(mosq2013, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mosq2013.csv", row.names = F)
+# write.csv(mc.1016.yr, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1016.yr_reduced.csv", row.names = F)
+# write.csv(mc.1534.yr, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1534.yr_reduced.csv", row.names = F)
+# write.csv(mc.410.yr, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.410.yr_reduced.csv", row.names = F)
+# write.csv(mc.haps.yr, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.haps.yr_reduced.csv", row.names = F)
+# write.csv(mc.1016.mo13, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1016.mo13_reduced.csv", row.names = F)
+# write.csv(mc.1016.mo, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1016.mo_reduced.csv", row.names = F)
+# write.csv(mc.1534.mo13, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1534.mo13_reduced.csv", row.names = F)
+# write.csv(mc.1534.mo, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1534.mo_reduced.csv", row.names = F)
+# write.csv(mc.1016.t13, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1016.t13_reduced.csv", row.names = F)
+# write.csv(mc.1016.t, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1016.t_reduced.csv", row.names = F)
+write.csv(mc.1016.b13, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1016.b13_reduced_expandedBuffer.csv", row.names = F)
+# write.csv(mc.1016.b, file = "/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1016.b_reduced_expandedBuffer.csv", row.names = F)
 
 
-# Source plots ------------------------------------------------------------
-### Plot Frequency of Resistance Allele at 1016 locus by zone for year 2013
-# Plot based off of dataframes mc.1016.t13 and mc.1016.b13
-source("R_Scripts/IQTmosq/plot_kdrZones13.R")
-kdrZones13
-
-### Plot Frequency of Resistance Allele at 1016 locus by zone for year 2014
-# Plot based off of dataframes mc.1016.t and mc.1016.b
-source("R_Scripts/IQTmosq/plot_kdrZones14.R")
-kdrZones14
-
-### Plot Frequency of Haplotypes across time
-source("R_Scripts/IQTmosq/run_Haplotype_Imputation.R")
-kdrHaps
-
-### Plot Frequency of 3 Loci across time
-source("R_Scripts/IQTmosq/plot_kdr3Loci.R")
-kdr3Loci
-
+# # Source plots ------------------------------------------------------------
+# ### Plot Frequency of Resistance Allele at 1016 locus by zone for year 2013
+# # Plot based off of dataframes mc.1016.t13 and mc.1016.b13
+# source("R_Scripts/IQTmosq/plot_kdrZones13.R")
+# kdrZones13
+# 
+# ### Plot Frequency of Resistance Allele at 1016 locus by zone for year 2014
+# # Plot based off of dataframes mc.1016.t and mc.1016.b
+# source("R_Scripts/IQTmosq/plot_kdrZones14.R")
+# kdrZones14
+# 
+# ### Plot Frequency of Haplotypes across time
+# source("R_Scripts/IQTmosq/run_Haplotype_Imputation.R")
+# kdrHaps
+# 
+# ### Plot Frequency of 3 Loci across time
+# source("R_Scripts/IQTmosq/plot_kdr3Loci.R")
+# kdr3Loci
+# 
 # Old plots ------------------------------------------------------------
 # ### Plot Frequency of Haplotypes across time with ribbon confidence intervals
 # source("R_Scripts/IQTmosq/plot_kdrHaps_ribbons.R")

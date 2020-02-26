@@ -1,8 +1,8 @@
 ### Plot Frequency of Resistance Alleles at three loci across years
 # Plot based off of dataframes mc.1016.yr, mc.1534.yr, mc.410.yr
-# mc.1016.yr <- read.csv("mc.1016.yr.csv")
-# mc.1534.yr <- read.csv("mc.1534.yr.csv")
-# mc.410.yr <- read.csv("mc.410.yr.csv")
+mc.1016.yr <- read.csv("mc.1016.yr.csv")
+mc.1534.yr <- read.csv("mc.1534.yr.csv")
+mc.410.yr <- read.csv("mc.410.yr.csv")
 
 ### Or plot based off reduced dataframes
 # mc.1016.yr <- read.csv("/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database/mc.1016.yr_reduced.csv")
@@ -129,6 +129,7 @@ kdr3Loci <- ggplot(mc.1016.yr, aes(x=year, y=freqR)) +
   annotate("text", x=2014, y=(mc.1016.yr$freqR[15] + 0.05), label = mc.1016.yr$n[15], color = "blue", fontface = 2) +
   annotate("text", x=2015, y=(mc.1016.yr$freqR[16] + 0.05), label = mc.1016.yr$n[16], color = "blue", fontface = 2) +
   annotate("text", x=2016, y=(mc.1016.yr$freqR[17] + 0.05), label = mc.1016.yr$n[17], color = "blue", fontface = 2) +
+  annotate("text", x=2017, y=(mc.1016.yr$freqR[18] + 0.05), label = mc.1016.yr$n[18], color = "blue", fontface = 2) +
   # 1534
   annotate("text", x=2000, y=(mc.1534.yr$freqR[1] + 0.07), label = mc.1534.yr$n[1], color = "dark green", fontface = 2) +
   annotate("text", x=2001, y=(mc.1534.yr$freqR[2] + 0.07), label = mc.1534.yr$n[2], color = "dark green", fontface = 2) +
@@ -147,6 +148,7 @@ kdr3Loci <- ggplot(mc.1016.yr, aes(x=year, y=freqR)) +
   annotate("text", x=2014, y=(mc.1534.yr$freqR[15] + 0.05), label = mc.1534.yr$n[15], color = "dark green", fontface = 2) +
   annotate("text", x=2015, y=(mc.1534.yr$freqR[16] + 0.05), label = mc.1534.yr$n[16], color = "dark green", fontface = 2) +
   annotate("text", x=2016, y=(mc.1534.yr$freqR[17] + 0.05), label = mc.1534.yr$n[17], color = "dark green", fontface = 2) +
+  annotate("text", x=2017, y=(mc.1534.yr$freqR[18] + 0.05), label = mc.1534.yr$n[18], color = "dark green", fontface = 2) +
   # 410
   annotate("text", x=2000, y=(mc.410.yr$freqR[1] + 0.03), label = mc.410.yr$n[1], color = "purple", fontface = 2) +
   annotate("text", x=2001, y=(mc.410.yr$freqR[2] + 0.03), label = mc.410.yr$n[2], color = "purple", fontface = 2) +
@@ -165,6 +167,7 @@ kdr3Loci <- ggplot(mc.1016.yr, aes(x=year, y=freqR)) +
   annotate("text", x=2014, y=(mc.410.yr$freqR[15] + 0.03), label = mc.410.yr$n[15], color = "purple", fontface = 2) +
   annotate("text", x=2015, y=(mc.410.yr$freqR[16] + 0.03), label = mc.410.yr$n[16], color = "purple", fontface = 2) +
   annotate("text", x=2016, y=(mc.410.yr$freqR[17] + 0.03), label = mc.410.yr$n[17], color = "purple", fontface = 2) +
+  annotate("text", x=2017, y=(mc.410.yr$freqR[18] + 0.03), label = mc.410.yr$n[18], color = "purple", fontface = 2) +
   
   # scale_color_manual(name = "Locus", values = c("1016" = "blue", "1534" = "dark green", "410" = "purple")) +
   theme(legend.title = element_text(size = 14, face = "bold"), legend.text = element_text(size=12)) 

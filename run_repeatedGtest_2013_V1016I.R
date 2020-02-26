@@ -11,7 +11,8 @@ library(dplyr)
 
 # Load mc.1016.t13 and mc.1016.b13 data
 mc.1016.t13 <- read.csv("mc.1016.t13_reduced.csv")
-mc.1016.b13 <- read.csv("mc.1016.b13_reduced.csv")
+mc.1016.b13 <- read.csv("mc.1016.b13_reduced_expandedBuffer.csv")
+# mc.1016.b13 <- read.csv("mc.1016.b13_reduced.csv")
 
 # 3/28/18 - Subset mc.1016.t13 to remove March & September data because sample size is too low
 # G test should not be done on zero values. 

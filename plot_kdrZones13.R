@@ -8,7 +8,7 @@ library(ggplot2)
 # Read in dataframes
 setwd("/Users/jenbaltz/Dropbox/GouldLab/Project_Mosquito/Database")
 mc.1016.t13 <- read.csv("mc.1016.t13_reduced.csv")
-mc.1016.b13 <- read.csv("mc.1016.b13_reduced.csv")
+mc.1016.b13 <- read.csv("mc.1016.b13_reduced_expandedBuffer.csv")
 
 # 3/28/18 - Subset mc.1016.t13 to remove March & September data because sample size is too low
 mc.1016.t13 <- mc.1016.t13[-c(3,9),]
@@ -52,7 +52,7 @@ kdrZones13 <- ggplot(mc.1016.t13, aes(x=month, y=freqR)) +
   geom_errorbar(data = mc.1016.b13, aes(ymin=freqR-CI_95, ymax=freqR+CI_95), width=.2
                 , color = "blue", size = 0.7) +
   #Add n labels for each point
-  annotate("text", x=1, y=0.03, label = mc.1016.t13$n[1], color = "red", fontface = 2) +
+  #annotate("text", x=1, y=0.03, label = mc.1016.t13$n[1], color = "red", fontface = 2) +
   #annotate("text", x=2, y=0.03, label = mc.1016.t13$n[2], color = "red", fontface = 2) +
   #annotate("text", x=3, y=0.03, label = mc.1016.t13$n[3], color = "red", fontface = 2) +
   annotate("text", x=4, y=0.03, label = mc.1016.t13$n[3], color = "red", fontface = 2) +
@@ -62,7 +62,7 @@ kdrZones13 <- ggplot(mc.1016.t13, aes(x=month, y=freqR)) +
   annotate("text", x=8, y=0.03, label = mc.1016.t13$n[7], color = "red", fontface = 2) +
   #annotate("text", x=9, y=0.03, label = mc.1016.t13$n[9], color = "red", fontface = 2) +
   #annotate("text", x=10, y=0.03, label = mc.1016.t13$n[10], color = "red", fontface = 2) +
-  annotate("text", x=1, y=0.0, label = mc.1016.b13$n[1], color = "blue", fontface = 2) +
+  #annotate("text", x=1, y=0.0, label = mc.1016.b13$n[1], color = "blue", fontface = 2) +
   #annotate("text", x=2, y=0.0, label = mc.1016.b13$n[2], color = "blue", fontface = 2) +
   #annotate("text", x=3, y=0.0, label = mc.1016.b13$n[3], color = "blue", fontface = 2) +
   annotate("text", x=4, y=0.0, label = mc.1016.b13$n[3], color = "blue", fontface = 2) +
